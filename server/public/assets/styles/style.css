@@ -1,0 +1,17 @@
+body {
+    background:
+        linear-gradient(
+            rgba(84, 17, 69, 0.80),
+            rgba(84, 17, 69, 0.80)
+        ),
+        url("/assets/images/marbletest.jpeg");
+    min-height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ main, .footer {
+    background-color: snow;
+}

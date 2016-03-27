@@ -1,0 +1,31 @@
+<div layout="row" ng-controller="NavController">
+    <md-sidenav md-component-id="left" class="md-sidenav-left">
+
+        <md-content>
+            <div layout="column">
+                <md-button class="md-primary" ng-href="#home">
+                    RSJ.LIFE
+                </md-button>
+                <md-button ng-href="#readon">
+                    Readon
+                </md-button>
+                <md-button ng-href="#library">
+                    Library
+                </md-button>
+                <md-button ng-href="#profile">
+                    Profile
+                </md-button>
+                <md-button ng-href="#journal">
+                    Journal
+                </md-button>
+                <md-button ng-click="closeLeftMenu()" class="md-warn">
+                    Close Menu
+                </md-button>
+            </div>
+        </md-content>
+    </md-sidenav>
+
+<md-button ng-click="openLeftMenu()">
+    menu
+</md-button>
+</div>
