@@ -1,0 +1,61 @@
+<div ng-controller="ProfileController" ng-cloak>
+    <md-content>
+        <div layout="row" layout-margin>
+            <div flex="33">
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input type="text" ng-model="user.email">
+                </md-input-container>
+            </div>
+            <div flex="33">
+                <md-input-container class="md-block">
+                    <label>First Name</label>
+                    <input type="text" ng-model="user.fname">
+                </md-input-container>
+            </div>
+            <div flex="33">
+                <md-input-container class="md-block">
+                    <label>Last Name</label>
+                    <input type="text" ng-model="user.lname">
+                </md-input-container>
+            </div>
+        </div>
+        <div layout-margin>
+            <md-input-container class="md-block">
+                <label>Address</label>
+                <input ng-model="user.address">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Address 2</label>
+                <input ng-model="user.address2">
+            </md-input-container>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>City</label>
+                    <input ng-model="user.city">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>State</label>
+                    <md-select ng-model="user.state">
+                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                            {{state.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Postal Code</label>
+                    <input name="Zip Code" ng-model="user.zcode"
+                    required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                    <div ng-messages="userForm.zcode.$error" role="alert" multiple>
+                        <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                    </div>
+                </md-input-container>
+                <br>
+
+            </div>
+        </div>
+        <div layout="row" layout-align="center">
+            <md-button ng-href="#profile" class="md-raised">Save Profile</md-button>
+        </div>
+    </md-content>
+</div>

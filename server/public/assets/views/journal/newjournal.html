@@ -1,0 +1,31 @@
+<md-content class="md-padding">
+    <div layout="row" layout-align="center">
+        <div flex="80">
+            <h2 class="md-title">New Journal</h1>
+            <div layout="row" layout-align="space-between center">
+                <div flex="40">
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input type="text" ng-model="user.newJournal.title">
+                    </md-input-container>
+                </div>
+                <div flex="20">
+                    <md-datepicker ng-model="user.newJournal.subdate" md-placeholder="Date">
+                    </md-datepicker>
+                </div>
+            </div>
+            <div layout="row">
+                <div flex="100">
+                    <md-input-container class="md-block">
+                        <label>Entry</label>
+                        <textarea ng-model="user.newJournal.entry" rows="20">
+                        </textarea>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-align="center">
+                <md-button class="md-raised md-primary">Primary</md-button>
+            </div>
+        </div>
+    </div>
+</md-content>

@@ -1,0 +1,74 @@
+<div ng-controller="ProfileController" ng-cloak>
+    <md-content class="purple-border">
+        <br>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Profile</span>
+                </h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <br>
+        <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+            <md-tab label="Profile"\>
+                <div layout="row" layout-margin>
+                    <div flex="33">
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input type="text" ng-model="user.email" disabled>
+                        </md-input-container>
+                    </div>
+                    <div flex="33">
+                        <md-input-container class="md-block">
+                            <label>First Name</label>
+                            <input type="text" ng-model="user.fname" disabled>
+                        </md-input-container>
+                    </div>
+                    <div flex="33">
+                        <md-input-container class="md-block">
+                            <label>Last Name</label>
+                            <input type="text" ng-model="user.lname" disabled>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout-margin>
+                    <md-input-container class="md-block">
+                        <label>Address</label>
+                        <input ng-model="user.address" disabled>
+                    </md-input-container>
+                    <md-input-container md-no-float class="md-block" disabled>
+                        <label>Address 2</label>
+                        <input ng-model="user.address2" disabled>
+                    </md-input-container>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>City</label>
+                            <input ng-model="user.city" disabled>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>State</label>
+                            <md-select ng-model="user.state">
+                                <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                </md-option disabled>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Postal Code</label>
+                            <input name="Zip Code" ng-model="user.zcode"
+                            required ng-pattern="/^[0-9]{5}$/" md-maxlength="5" disabled>
+                            <div ng-messages="userForm.zcode.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                            </div>
+                        </md-input-container>
+                        <br>
+                    </div>
+                </div>
+            </md-tab>
+            <md-tab label="Edit Profile">
+                <ng-include src="'/assets/views/profile/profileedit.html'"></ng-include>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
