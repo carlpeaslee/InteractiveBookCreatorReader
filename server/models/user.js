@@ -1,6 +1,14 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+var questionresponse = new Schema({
+
+});
+
+var journalentries = new Schema({
+
+});
+
 var user = new Schema({
     email: { type : String , required : true, index: {unique: true} },
     pw: { type : String , required : true },
