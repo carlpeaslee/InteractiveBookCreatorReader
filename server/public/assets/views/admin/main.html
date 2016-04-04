@@ -1,0 +1,22 @@
+<div ng-controller="AdminController" ng-cloak>
+    <md-content class="purple-border">
+        <br>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Admin</span>
+                </h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <br>
+        <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+            <md-tab label="New Question"\>
+                <ng-include src="'/assets/views/admin/newquestion.html'"></ng-include>
+            </md-tab>
+            <md-tab label="View Questions">
+                <ng-include src="'/assets/views/admin/viewquestions.html'"></ng-include>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

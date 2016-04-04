@@ -1,0 +1,27 @@
+
+<md-content class="md-padding">
+<div>
+    <md-input-container class="md-block">
+        <label>Question</label>
+        <input ng-model="newquestion.prompt">
+    </md-input-container>
+    <md-input-container md-no-float class="md-block">
+        <label>Notes</label>
+        <input ng-model="newquestion.notes">
+    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block">
+            <label>Type</label>
+            <md-select ng-model="newquestion.type">
+                <md-option>Long Answer</md-option>
+                <md-option>Short Answer</md-option>
+                <md-option>Multiple Choice</md-option>
+                <md-option>Slider</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout="row" layout-align="center center">
+        <md-button>Save</md-button>
+    </div>
+</div>
+</md-content>

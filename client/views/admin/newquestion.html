@@ -1,0 +1,59 @@
+
+<md-content class="md-padding">
+<div>
+    <md-input-container class="md-block">
+        <label>Question</label>
+        <input ng-model="newquestion.prompt">
+    </md-input-container>
+    <md-input-container md-no-float class="md-block">
+        <label>Notes</label>
+        <input ng-model="newquestion.notes">
+    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block">
+            <label>Type</label>
+            <md-select ng-model="newquestion.type">
+                <md-option>Long Answer</md-option>
+                <md-option>Short Answer</md-option>
+                <md-option>Multiple Choice</md-option>
+                <md-option>Slider</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-show=" " class="md-block">
+            <label>Number of Options</label>
+            <md-select>
+                <md-option>2</md-option>
+                <md-option>3</md-option>
+                <md-option>4</md-option>
+                <md-option>5</md-option>
+            </md-select>
+        </md-input-container>
+        <div layout="row">
+            <md-input-container md-no-float class="md-block">
+                <label>Option 1</label>
+                <input ng-model="newquestion.option[0]">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Option 2</label>
+                <input ng-model="newquestion.option[1]">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Options 3</label>
+                <input ng-model="newquestion.option[2]">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Option 4</label>
+                <input ng-model="newquestion.option[3]">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Option 5</label>
+                <input ng-model="newquestion.option[4]">
+            </md-input-container>
+        </div>
+
+    </div>
+    <div layout="row" layout-align="center center">
+        <md-button>Save</md-button>
+    </div>
+</div>
+</md-content>

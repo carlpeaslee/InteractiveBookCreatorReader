@@ -1,21 +1,21 @@
-<div ng-controller="JournalController" ng-cloak>
+<div ng-controller="QuestionsController" ng-cloak>
     <md-content>
         <br>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>
-                    <span>Journal</span>
+                    <span>Questions</span>
                 </h2>
                 <span flex></span>
             </div>
         </md-toolbar>
         <br>
         <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
-            <md-tab label="New Journal">
-                <ng-include src="'/assets/views/journal/newjournal.html'"></ng-include>
+            <md-tab label="Random Question">
+                <ng-include src="'/assets/views/questions/randomquestion.html'"></ng-include>
             </md-tab>
-            <md-tab label="Journal Entries">
-                <ng-include src="'/assets/views/journal/journalentries.html'"></ng-include>
+            <md-tab label="Question Responses">
+                <ng-include src="'/assets/views/questions/questionresponses.html'"></ng-include>
             </md-tab>
         </md-tabs>
 

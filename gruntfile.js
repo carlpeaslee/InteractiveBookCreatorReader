@@ -37,7 +37,9 @@ module.exports = function(grunt) {
               "imgs/*",
               "journal/*",
               "library/*",
-              "profile/*"
+              "profile/*",
+              "questions/*",
+              "*/*"
             ],
             "dest": "server/public/assets/views/"
         },

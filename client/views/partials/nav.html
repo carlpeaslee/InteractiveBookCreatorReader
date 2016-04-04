@@ -2,7 +2,7 @@
     <md-fab-toolbar md-direction="right">
         <md-fab-trigger class="align-with-text">
             <md-button class="md-fab md-primary md-36" aria-label="home">
-                <md-icon md-svg-src="/assets/views/imgs/rifticon.svg"></md-icon>
+                <md-icon md-svg-src="/assets/views/imgs/rifticon.svg" class="rifticon"></md-icon>
             </md-button>
         </md-fab-trigger>
         <md-toolbar>
@@ -10,11 +10,14 @@
                 <md-button aria-label="profile" class="md-icon-button" ng-href="#profile">
                     <md-icon class="material-icons md-48">person</md-icon>
                 </md-button>
+                <md-button  ng-href="#library">
+                    Library
+                </md-button>
                 <md-button ng-href="#journal">
                     Journal
                 </md-button>
-                <md-button  ng-href="#library">
-                    Library
+                <md-button ng-href="#questions">
+                    Questions
                 </md-button>
 
             </md-fab-actions>
