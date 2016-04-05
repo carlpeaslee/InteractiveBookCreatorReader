@@ -20,7 +20,7 @@ myApp.config(["$routeProvider", function($routeProvider){
         }).
         when("/login", {
             templateUrl: "/assets/views/login.html",
-            controller: "LoginController"
+            controller: "AuthController"
         }).
         when("/readon", {
             templateUrl: "/assets/views/readon.html",
@@ -47,6 +47,6 @@ myApp.config(["$routeProvider", function($routeProvider){
             controller: "ProfileController"
         }).
         otherwise({
-            redirectTo: '/library'
+            redirectTo: '/login'
         });
 }]);

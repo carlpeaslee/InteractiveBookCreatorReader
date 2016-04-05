@@ -1,17 +1,19 @@
-<md-content>
+<md-content ng-controller="AuthController as auth">
     <div layout="row" layout="center center" layout-padding>
-    <div flex="33" flex-offset="33" class="purple-border">
-    <form name="login">
-        <md-input-container class="md-block">
-            <label>Email</label>
-            <input type="text" name="email" ng-model="user.email">
-        </md-input-container>
-        <md-input-container class="md-block">
-            <label>Password</label>
-            <input type="password" name="pw" ng-model="user.pw">
-        </md-input-container>
-        <md-button>Login</md-button>
-    </form>
+      <!-- Consider this the main view -->
+  <h2>Login Page</h2>
+  <!-- Shown for users that are NOT logged in -->
+  <section ng-hide="auth.loggedIn">
+    <!-- I got this button image from Googles sign-in button brand guidelines page -->
+    <a href= "/auth/google"><img src="/assets/views/imgs/btn_google_signin_dark_normal_web.png" /></a>
+  </section>
+  <!-- Shown for users that are logged in -->
+  <section ng-show="auth.loggedIn">
+    <p>
+      You are logged in!
+    </p>
+  </section>
+
 </div>
 </div>
 </md-content>
