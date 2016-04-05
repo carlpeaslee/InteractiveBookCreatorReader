@@ -7,8 +7,11 @@
         </md-fab-trigger>
         <md-toolbar>
             <md-fab-actions class="md-toolbar-tools">
-                <md-button aria-label="profile" class="md-icon-button" ng-href="#profile">
+                <md-button aria-label="profile" ng-href="#profile">
                     <md-icon class="material-icons md-48">person</md-icon>
+                    <span ng-show="nav.displayLogout">
+                        {{nav.username}}
+                    </span>
                 </md-button>
                 <md-button  ng-href="#library">
                     Library
@@ -19,12 +22,9 @@
                 <md-button ng-href="#questions">
                     Questions
                 </md-button>
-                <span ng-show="nav.displayLogout">
-                    Hi {{nav.username}}! | <a href="#" ng-click="nav.logout()">Logout</a>
-                </span>
-                <span id="message" class="nav.message.type" ng-show="nav.message.text">
-                    {{nav.message.text}}
-                </span>
+                <md-button ng-show="nav.displayLogout" ng-click="nav.logout()" ng-href="#">
+                    Logout
+                </md-button>
             </md-fab-actions>
         </md-toolbar>
     </md-fab-toolbar>

@@ -5,10 +5,17 @@
  */
 var express = require('express');
 var router  = express.Router();
-//var calendar = require('./calendar');
+var path = require('path');
+
 
 /** ---------- SUBROUTES ---------- **/
-//router.use('/calendar', calendar);
+//var admin = require("./admin.js");
+//var userroute = require("./userroute.js")
+
+
+//router.use("/admin", admin);
+//router.use("/userroute", userroute);
+
 
 /**
  * GET private/index

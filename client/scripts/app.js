@@ -47,6 +47,6 @@ myApp.config(["$routeProvider", function($routeProvider){
             controller: "ProfileController"
         }).
         otherwise({
-            redirectTo: '/login'
+            redirectTo: '/library'
         });
 }]);
