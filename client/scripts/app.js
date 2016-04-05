@@ -1,4 +1,11 @@
-var myApp = angular.module("myApp", ['ngMaterial', 'ngMessages', 'ngRoute']);
+var myApp = angular.module("myApp", ['ngMaterial', 'ngMessages', 'ngRoute', 'ngSanitize']);
+
+myApp.filter("sanitize", ['$sce', function($sce) {
+    return function(htmlCode){
+    return $sce.trustAsHtml(htmlCode);
+  }
+}]);
+
 
 myApp.config(['$mdThemingProvider', function($mdThemingProvider){
     $mdThemingProvider.theme('default')

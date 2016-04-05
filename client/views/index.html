@@ -16,21 +16,17 @@
     <script type="text/javascript" src="/assets/vendors/angular-aria/angular-aria.min.js"></script>
     <script type="text/javascript" src="/assets/vendors/angular-material/angular-material.min.js"></script>
     <script type="text/javascript" src="/assets/vendors/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/assets/vendors/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/assets/scripts/app.min.js"></script>
 
 
 </head>
 <body>
+    <!-- <div class="background-img"></div> -->
     <div class="tint"></div>
     <ng-include src="'/assets/views/partials/nav.html'"></ng-include>
-    <div layout="row" layout-align="center" class="everything">
-        <div flex="90">
-            <main ng-view>
-            </main>
-            <br>
-            <br>
-        </div>
-    </div>
+    <main ng-view>
+    </main>
 
 
 

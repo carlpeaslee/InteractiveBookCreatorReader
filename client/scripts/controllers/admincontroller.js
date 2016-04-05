@@ -1,4 +1,4 @@
-myApp.controller('AdminController', ["$scope", "AdminService", function($scope, AdminService){
+myApp.controller("AdminController", ["$scope", "$sce", "AdminService", function($scope, $sce, AdminService){
     var adminService = AdminService;
 
     $scope.newquestion = {};
@@ -11,8 +11,10 @@ myApp.controller('AdminController', ["$scope", "AdminService", function($scope, 
         $scope.newquestion={};
     }
 
-
     $scope.admin = adminService.admin;
+
+    $scope.newpage = {};
+
 
 
 }]);

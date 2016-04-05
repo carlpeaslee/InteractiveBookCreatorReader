@@ -1,0 +1,68 @@
+
+    <div layout="row">
+        <div flex="33">
+            <md-content>
+            <form ng-submit="submit(newpage)">
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Style</label>
+                        <md-select ng-model="newpage.style">
+                            <md-option value="bubble">bubble</md-option>
+                            <md-option value="rsj">rsj</md-option>
+                            <md-option value="wiki">wiki</md-option>
+                            <md-option value="five">five</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Associated Book</label>
+                        <md-select ng-model="newpage.associatedBook">
+                            <md-option value="testbook">Testbook</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>True Page</label>
+                        <input type="number" ng-model="newpage.truepage">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Display Page</label>
+                        <input type="number" ng-model="newpage.displaypage">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <div flex="100">
+                        <md-input-container class="md-block">
+                            <label>Body</label>
+                            <textarea ng-model="newpage.bodytext" rows="15">
+                            </textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row">
+                    <md-button type="submit">Save</md-button>
+                </div>
+            </form>
+            </md-content>
+        </div>
+        <div flex="66" class="grey-background">
+            <br>
+            <div layout="row" layout-align="center center">
+                <div class="test-paper">
+                    <div class="test-header-aa">
+                        <p ng-show="newpage.style == 'bubble'">
+                            The Riftstone Journals
+                        </p>
+                        <p ng-show="newpage.style == 'rsj'">
+                            <i>The Riftstone Journals</i>
+                        </p>
+                    </div>
+                    <div class="test-body-aa">
+                            <div ng-bind-html="newpage.bodytext | sanitize"></div>
+                    </div>
+                    <div class="test-footer-aa">
+                        <p>{{newpage.displaypage}}</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>

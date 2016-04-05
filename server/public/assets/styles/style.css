@@ -1,6 +1,6 @@
 body {
     background-image: url('../views/imgs/composition.jpg');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
 }
 
@@ -29,13 +29,18 @@ body {
     height: 40px;
 }
 
+.whole-page {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
 .paper {
-    background-image: url('../views/imgs/paper.jpg');
-    height: 700px;
-    width: 550px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: snow;
+    height: 1304px;
+    width: 980px;
 }
 
 .aa1 {
@@ -48,31 +53,80 @@ body {
 }
 
 .paper-header {
-    font-size: 16px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    height: 20px;
+    font-size: 36px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+    height: 36px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
 .paper-body {
-    height: 580px;
+    height: 1090px;
+    width: 780px;
     overflow: hidden;
-    margin-left: 40px;
-    margin-right: 40px;
-    font-size: 16px;
-    line-height: 32px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: justify;
+    text-indent: 100px;
+}
+
+.paper-footer {
+    font-size: 36px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+    height: 36px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grey-background {
+    background-color: grey;
+}
+
+.test-paper {
+    background-color: snow;
+    height: 652px;
+    width: 490px;
+    font-family: "Times New Roman";
+}
+
+.test-header-aa {
+    font-size: 18px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    height: 18px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.test-paper p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.test-body-aa {
+    height: 545px;
+    width: 390px;
+    overflow: hidden;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 18px;
+    line-height: 22.5px;
     text-align: justify;
     text-indent: 50px;
 }
 
-.paper-footer {
-    font-size: 16px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    height: 20px;
+.test-footer-aa {
+    font-size: 18px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    height: 18px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
