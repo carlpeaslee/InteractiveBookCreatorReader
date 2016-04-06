@@ -10,32 +10,30 @@ myApp.factory("RSJService", ["$http", function($http){
     };
 
     var getUserData = function(){
-        $http.get("/user").then(function(response){
+        $http.get("/user/profile").then(function(response){
             user.data = response.data;
         });
     };
 
-    var postData = function(data){
-        $http.post("/user", data).then(function(response){
+    var postUserData = function(data){
+        $http.post("/user/editprofile", data).then(function(response){
             getUserData();
         });
     };
 
 
-    var initialCall = function(){
+    var initialUserDataCall = function(){
         if(user.data === undefined){
-            $http.get("/data").then(function(response){
-                user.data = response.data;
-            });
+            getUserData();
         }
     };
 
 
 
     return {
-        postData: postData,
+        postUserData: postUserData,
         getUserData: getUserData,
-        initialCall: initialCall,
+        initialUserDataCall: initialUserDataCall,
         getPages: getPages,
         user: user,
         pages: pages

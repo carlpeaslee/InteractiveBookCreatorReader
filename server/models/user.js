@@ -6,6 +6,17 @@ var user = new Schema({
     googleToken: String,
     googleEmail: String,
     googleName: String,
+    fname: { type : String , required : false },
+    lname: { type : String , required : false },
+    datecreated: { type : Date , default : Date.now },
+    lastlogin: { type : Date },
+    phone: { type : Number , required : false },
+    address: { type : String , required : false },
+    address2: { type : String , required : false },
+    state: { type : String , required : false },
+    zipcode: { type : Number , required : false },
+    currentbook: { type : String , required : false },
+    currentpage: { type : Number , required : false }
 });
 
 // var questionresponse = new Schema({

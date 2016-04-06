@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require("path");
 
 var Newquestion = require("../models/newquestion.js");
-var Newpage = require("../models/newpage.js");
+var Pagemodel = require("../models/pagemodel.js");
 
 router.get('/questions', function (req, res) {
     Newquestion.find({}, function(err, data){
@@ -33,7 +33,7 @@ router.post("/newquestion", function (req, res) {
 });
 
 router.post("/newpage", function (req, res) {
-    var addedPage = new Newpage ({
+    var addedPage = new Pagemodel ({
         "style" : req.body.style,
         "book" : req.body.book,
         "order" : req.body.order,
@@ -51,7 +51,7 @@ router.post("/newpage", function (req, res) {
 });
 
 router.get('/pages', function (req, res) {
-    Newpage.find({}, function(err, data){
+    Pagemodel.find({}, function(err, data){
         if(err){
             console.log(err);
         }

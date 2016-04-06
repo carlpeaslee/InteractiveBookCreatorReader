@@ -9,12 +9,7 @@ var path = require('path');
 
 
 /** ---------- SUBROUTES ---------- **/
-//var admin = require("./admin.js");
-//var userroute = require("./userroute.js")
 
-
-//router.use("/admin", admin);
-//router.use("/userroute", userroute);
 
 
 /**

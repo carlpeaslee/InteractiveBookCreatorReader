@@ -1,5 +1,6 @@
 <div ng-controller="ProfileController" ng-cloak>
     <md-content>
+        <form ng-submit="updateUserProfile(user)" >
         <div layout="row" layout-margin>
             <div flex="33">
                 <md-input-container class="md-block">
@@ -51,11 +52,11 @@
                     </div>
                 </md-input-container>
                 <br>
-
             </div>
         </div>
         <div layout="row" layout-align="center">
             <md-button ng-href="#profile" class="md-raised">Save Profile</md-button>
         </div>
+    </form>
     </md-content>
 </div>
