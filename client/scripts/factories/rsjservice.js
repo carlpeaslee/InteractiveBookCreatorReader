@@ -1,4 +1,14 @@
 myApp.factory("RSJService", ["$http", function($http){
+
+    var user = {};
+    var pages = {};
+
+    var getPages = function(){
+        $http.get("/pages").then(function(response){
+            pages.data = response.data;
+        });
+    };
+
     var getUserData = function(){
         $http.get("/user").then(function(response){
             user.data = response.data;
@@ -20,12 +30,14 @@ myApp.factory("RSJService", ["$http", function($http){
         }
     };
 
-    var user = {};
+
 
     return {
         postData: postData,
         getUserData: getUserData,
         initialCall: initialCall,
-        user: user
+        getPages: getPages,
+        user: user,
+        pages: pages
     };
 }]);

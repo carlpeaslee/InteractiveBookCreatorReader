@@ -11,6 +11,17 @@ myApp.factory("AdminService", ["$http", function($http){
         });
     };
 
+    var getPages = function(){
+        $http.get("/admin/pages").then(function(response){
+            admin.pages = response.data;
+        });
+    };
+
+    var submitNewPage = function(data){
+        $http.post("/admin/newpage", data).then(function(response){
+            getPages();
+        });
+    };
 
     var initialCall = function(){
         if(admin.questions === undefined){
@@ -23,6 +34,8 @@ myApp.factory("AdminService", ["$http", function($http){
     return {
         getQuestions: getQuestions,
         submitNewQuestion: submitNewQuestion,
+        getPages: getPages,
+        submitNewPage: submitNewPage,
         initialCall: initialCall,
         admin: admin
     };

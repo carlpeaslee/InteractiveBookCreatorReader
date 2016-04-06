@@ -44,7 +44,7 @@ body {
 }
 
 .aa1 {
-    font-family: "Times New Roman", serif;
+    font-family: Garamond;
 }
 
 .aa1 p {
@@ -53,13 +53,16 @@ body {
 }
 
 .paper-header {
-    font-size: 36px;
-    padding-top: 36px;
-    padding-bottom: 36px;
+    font-size: 24px;
+    padding-top: 50px;
+    padding-bottom: 32px;
     height: 36px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Futura";
+    text-transform: uppercase;
+    color: dimgray;
 }
 
 .paper-body {
@@ -75,14 +78,33 @@ body {
 }
 
 .paper-footer {
-    font-size: 36px;
-    padding-top: 36px;
+    font-size: 24px;
+    padding-top: 16px;
     padding-bottom: 36px;
     height: 36px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Futura";
+    color: dimgrey;
 }
+
+.backwardsButton {
+    position: absolute;
+    height: 90%;
+    width: 33%;
+    top: 10%;
+    left: 0;
+}
+
+.forwardsButton {
+    position: absolute;
+    height: 100%;
+    width: 33%;
+    top: 0;
+    left: 66%;
+}
+
 
 .grey-background {
     background-color: grey;

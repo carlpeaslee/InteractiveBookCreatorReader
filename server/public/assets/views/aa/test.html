@@ -1,0 +1,18 @@
+<div class="whole-page" ng-controller="ReadController">
+    <div class="aa1 paper">
+        <div class="paper-header">
+        </div>
+        <div class="paper-body">
+            <div ng-bind-html="pages.data[currentPage].content[0] | sanitize"></div>
+        </div>
+        <div class="paper-footer">
+            {{pages.data[currentPage].displaypage}}
+        </div>
+    </div>
+    <div class="backwardsButton" ng-click="pageBackward()">
+
+    </div>
+    <div class="forwardsButton" ng-click="pageForward()">
+
+    </div>
+</div>

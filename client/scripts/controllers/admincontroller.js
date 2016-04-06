@@ -2,19 +2,21 @@ myApp.controller("AdminController", ["$scope", "$sce", "AdminService", function(
     var adminService = AdminService;
 
     $scope.newquestion = {};
-    $scope.newquestion.optionNumber = [];
+    $scope.newpage = {};
+
+    $scope.admin = adminService.admin;
 
     adminService.getQuestions();
 
-    $scope.submit = function(data) {
+    $scope.submitNewQuestion = function(data) {
         adminService.submitNewQuestion(data);
         $scope.newquestion={};
     }
 
-    $scope.admin = adminService.admin;
-
-    $scope.newpage = {};
-
+    $scope.submitNewPage = function(data) {
+        adminService.submitNewPage(data);
+        $scope.newpage = {};
+    }
 
 
 }]);

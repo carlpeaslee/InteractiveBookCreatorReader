@@ -3,11 +3,14 @@ var router = express.Router();
 var path = require("path");
 
 
-// var admin = require("./admin.js");
+var admin = require("./admin.js");
+var pages = require("./pages.js");
 // var userroute = require("./userroute.js")
 //
 //
-// router.use("/admin", admin);
+
+router.use("/pages", pages);
+router.use("/admin", admin);
 // router.use("/userroute", userroute);
 
 

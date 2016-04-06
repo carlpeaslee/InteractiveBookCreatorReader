@@ -24,11 +24,11 @@ myApp.config(["$routeProvider", function($routeProvider){
         }).
         when("/readon", {
             templateUrl: "/assets/views/readon.html",
-            controller: "ReadonController"
+            controller: "ReadController"
         }).
-        when("/aa/1", {
-            templateUrl: "/assets/views/aa/1.html",
-            controller: "ReadonController"
+        when("/aa", {
+            templateUrl: "/assets/views/aa/test.html",
+            controller: "ReadController"
         }).
         when("/library", {
             templateUrl: "/assets/views/library/library.html",
