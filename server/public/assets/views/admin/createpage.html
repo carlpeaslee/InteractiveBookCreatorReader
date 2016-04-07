@@ -1,6 +1,6 @@
 
     <div layout="row">
-        <div flex="33">
+        <div flex="50">
             <md-content>
             <form ng-submit="submitNewPage(newpage)">
                 <div layout="row">
@@ -9,14 +9,14 @@
                         <md-select ng-model="newpage.style">
                             <md-option value="bubble">bubble</md-option>
                             <md-option value="rsj">rsj</md-option>
-                            <md-option value="wiki">wiki</md-option>
                             <md-option value="five">five</md-option>
+                            <md-option value="interactive">interactive</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Associated Book</label>
                         <md-select ng-model="newpage.book">
-                            <md-option value="testbook">Testbook</md-option>
+                            <md-option value="t">Testbook</md-option>
                         </md-select>
                     </md-input-container>
                 </div>
@@ -32,6 +32,8 @@
                 </div>
                 <div layout="row">
                     <div flex="100">
+                        <md-title>Typography: </md-title>
+                        <md-header>&ampemsp;</md-header>
                         <md-input-container class="md-block">
                             <label>Body</label>
                             <textarea ng-model="newpage.content" rows="15">
@@ -48,29 +50,30 @@
                         </md-input-container>
                     </div>
                 </div>
+                <div ng-show="newpage.style == 'interactive'" layout="row">
+                    <div flex="100">
+                    </div>
+                </div>
                 <div layout="row">
                     <md-button type="submit">Save</md-button>
                 </div>
             </form>
             </md-content>
         </div>
-        <div flex="66" class="grey-background">
+        <div flex="50" class="grey-background">
             <br>
             <div layout="row" layout-align="center center">
-                <div class="test-paper">
-                    <div class="test-header-aa">
-                        <p ng-show="newpage.style == 'bubble'">
+                <div class="paper-admin">
+                    <div ng-class="newpage.style + '-header-admin'" ng-hide="newpage.style == 'five'">
+                        <p ng-show="newpage.style" ng-hide="newpage.style == 'interactive'">
                             The Riftstone Journals
                         </p>
-                        <p ng-show="newpage.style == 'rsj'">
-                            <i>The Riftstone Journals</i>
-                        </p>
                     </div>
-                    <div class="test-body-aa">
-                            <div ng-bind-html="newpage.content | sanitize"></div>
+                    <div ng-class="newpage.style + '-body-admin'">
+                        <div ng-bind-html="newpage.content | sanitize"></div>
                     </div>
-                    <div class="test-footer-aa">
-                        <p>{{newpage.displaypage}}</p>
+                    <div ng-class="newpage.style + '-footer-admin'" ng-hide="newpage.style == 'five'">
+                        {{newpage.displaypage}}
                     </div>
                 </div>
             </div>

@@ -15,4 +15,5 @@ myApp.controller("ReadController", ["$scope", "$sce", "RSJService", function($sc
         $scope.currentPage--;
     };
 
+
 }]);

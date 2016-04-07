@@ -1,6 +1,6 @@
 <div class="whole-page" ng-controller="ReadController" md-swipe-left="pageForward()" md-swipe-right="pageBackward()">
-    <div ng-hide="pages.data[currentPage].style == five" class="paper">
-        <div ng-class="pages.data[currentPage].style + '-header'" ng-hide="pages.data[currentPage].style == five">
+    <div class="paper">
+        <div ng-class="pages.data[currentPage].style + '-header'" ng-hide="pages.data[currentPage].style == 'five' || 'interactive'">
             <p>
                 The Riftstone Journals
             </p>
@@ -8,15 +8,14 @@
         <div ng-class="pages.data[currentPage].style + '-body'">
             <div ng-bind-html="pages.data[currentPage].content[0] | sanitize"></div>
         </div>
-        <div ng-class="pages.data[currentPage].style + '-footer'" ng-hide="pages.data[currentPage].style == five">
+        <div ng-class="pages.data[currentPage].style + '-footer'" ng-hide="pages.data[currentPage].style == 'five'">
             {{pages.data[currentPage].displaypage}}
         </div>
     </div>
-    <div class="backwardsButton" ng-click="pageBackward()">
 
+
+    <div class="backwardsButton" ng-click="pageBackward()">
     </div>
     <div class="forwardsButton" ng-click="pageForward()">
     </div>
-
-
 </div>
