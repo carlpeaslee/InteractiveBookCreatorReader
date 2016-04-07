@@ -1,11 +1,12 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var bcrypt = require("bcrypt");
+var SALT_WORK_FACTOR = 10;
 
-var user = new Schema({
-    googleId: String,
-    googleToken: String,
-    googleEmail: String,
-    googleName: String,
+
+var User = new Schema({
+    email: { type : String , required : false, index: {unique: true}},
+    password: {type: String, required: true},
     fname: { type : String , required : false },
     lname: { type : String , required : false },
     datecreated: { type : Date , default : Date.now },
@@ -19,27 +20,28 @@ var user = new Schema({
     currentpage: { type : Number , required : false }
 });
 
-// var questionresponse = new Schema({
-//
-// });
-//
-// var journalentries = new Schema({
-//
-// });
-//
-// var user = new Schema({
-//     email: { type : String , required : true, index: {unique: true} },
-//     pw: { type : String , required : true },
-//     fname: { type : String , required : false },
-//     lname: { type : String , required : false },
-//     datecreated: { type : Date , default : Date.now },
-//     lastlogin: { type : Date , default : Date.now },
-//     phone: { type : Number , required : false },
-//     address: { type : String , required : false },
-//     address2: { type : String , required : false },
-//     state: { type : String , required : false },
-//     zipcode: { type : Number , required : false },
-//     currentpage: { type : String , required : false }
-// });
 
-module.exports = mongoose.model("User", user);
+User.pre("save", function(next){
+    console.log("Made it into Pre!");
+    var user = this;
+    if(!user.isModified("password")) return next;
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
+        if(err) return next(err);
+        bcrypt.hash(user.password, salt, function(err, hash){
+            if(err) return next(err);
+            user.password = hash;
+            console.log("Did I hash? : " , user.password);
+            next();
+        });
+    });
+});
+
+User.methods.comparePassword = function(candidatePassword, cb){
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+        if(err) return cb(err);
+        cb(null, isMatch);
+    });
+};
+
+
+module.exports = mongoose.model("user", User);

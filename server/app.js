@@ -1,41 +1,73 @@
 var express = require("express");
+var app = express();
 var bodyParser = require("body-parser");
-var session = require("express-session")
+var cookieParser = require("cookie-parser");
 
-var passport = require('./auth/passport');
-var configs = require('./config/auth');
+var passport = require('passport');
+var session = require("express-session");
+var localStrategy = require('passport-local');
+
+var mongoose = require('mongoose');
+
+//routes
 var index = require("./routes/index.js");
-var auth = require('./routes/auth');
-var isLoggedIn = require('./utils/auth');
-var private = require('./routes/private/index');
+var register = require('./routes/register');
+var user = require('./routes/user');
+
 var db = require("./utils/db.js");
 
-var app = express();
-app.use('/public', express.static('public'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
-/** ---------- SESSION CREATION AND STORAGE ---------- **/
 app.use(session({
-  secret: configs.sessionVars.secret,
-  key: 'user',
-  resave: 'true',
-  saveUninitialized: false,
-  cookie: { maxage: 60000, secure: false },
+    secret: "secret",
+    key: "user",
+    resave: true,
+    s: false,
+    cookie: {maxAge: 60000, secure: false}
 }));
 
-/** ---------- PASSPORT ---------- **/
-app.use(passport.initialize()); // kickstart passport
-/**
- * Alters request object to include user object.
- * @see {@link auth/passport}
- */
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(passport.initialize());
 app.use(passport.session());
-/** ---------- ROUTES ---------- **/
-app.use('/auth', auth);
-app.use('/private', isLoggedIn, private);
 
+
+/** ---------- Configuring passport ---------- **/
+passport.serializeUser(function(user, done){
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user){
+        if(err) done(err);
+        done(null, user);
+    });
+});
+
+passport.use("local", new localStrategy({
+      passReqToCallback : true,
+      usernameField: 'username'
+    }, function(req, username, password, done){
+        User.findOne({username: username}, function(err,user){
+            if(err) throw err;
+            if(!user){
+              return done(null, false, {message: "Incorrect username or password"});
+            }
+
+            user.comparePassword(password, function(err, isMatch){
+                if(err) throw err;
+                if(isMatch){
+                  return done(null, user);
+                } else {
+                  done( null, false, {message: "Incorrect username or password"});
+                }
+            });
+        });
+    }
+));
+
+/** ---------- ROUTES ---------- **/
+app.use("/register", register);
+app.use("/user", user); // START HERE TODAY
 app.use("/", index);
 
 app.set("port", (process.env.PORT || 5000));

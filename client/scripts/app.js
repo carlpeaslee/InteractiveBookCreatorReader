@@ -20,7 +20,11 @@ myApp.config(["$routeProvider", function($routeProvider){
         }).
         when("/login", {
             templateUrl: "/assets/views/login.html",
-            controller: "AuthController"
+            controller: "LoginController"
+        }).
+        when("/register", {
+            templateUrl: "/assets/views/register.html",
+            controller: "RegisterController"
         }).
         when("/readon", {
             templateUrl: "/assets/views/readon.html",

@@ -1,5 +1,3 @@
-
-
 myApp.controller("QuestionsController", ["$scope", "RSJService", function($scope, RSJService){
     var rsjService = RSJService;
     $scope.journal = {

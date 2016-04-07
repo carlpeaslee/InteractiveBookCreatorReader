@@ -18,7 +18,5 @@ myApp.controller("AdminController", ["$scope", "$sce", "AdminService", function(
         $scope.newpage = {};
     }
 
-    //"&lt;form&gt;&lt;p&gt;this is prompt 1&lt;/p&gt;&lt;textarea&gt;&lt;/textarea&gt;&lt;/form&gt;&lt;div class='gap'&gt;&lt;/div&gt;";
-
 
 }]);

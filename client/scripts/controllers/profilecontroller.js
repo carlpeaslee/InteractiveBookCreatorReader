@@ -2,7 +2,7 @@ myApp.controller("ProfileController", ["$scope", "RSJService", function($scope, 
     var rsjService = RSJService;
     $scope.user = rsjService.user;
 
-    rsjService.initialUserDataCall();
+    //rsjService.initialUserDataCall();
 
     $scope.updateUserProfile = function(data) {
         rsjService.postUserData(data);
