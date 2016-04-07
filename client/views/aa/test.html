@@ -1,7 +1,7 @@
 <div class="whole-page" ng-controller="ReadController" md-swipe-left="pageForward()" md-swipe-right="pageBackward()">
     <div class="paper">
-        <div ng-class="pages.data[currentPage].style + '-header'" ng-hide="pages.data[currentPage].style == 'five' || 'interactive'">
-            <p>
+        <div ng-class="pages.data[currentPage].style + '-header'" ng-hide="pages.data[currentPage].style == 'five'">
+            <p ng-hide="pages.data[currentPage].style == 'interactive'">
                 The Riftstone Journals
             </p>
         </div>
