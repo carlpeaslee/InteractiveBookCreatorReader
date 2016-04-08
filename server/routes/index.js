@@ -12,12 +12,12 @@ var path = require("path");
 // router.use("/user", users);
 
 router.post("/", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login"
+    successRedirect: "/users/",
+    failureRedirect: "/"
 }));
 
 router.get("/users", function(req,res,next){
-    res.sendFile(path.resolve(__dirname, "../public/assets/views/users.html"));
+    res.sendFile(path.resolve(__dirname, "../public/assets/views/index.html"));
 });
 
 router.get("/*", function(req,res,next){
