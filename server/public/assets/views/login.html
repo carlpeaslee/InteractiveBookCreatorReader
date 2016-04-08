@@ -1,11 +1,12 @@
 <md-dialog ng-controller="LoginController">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>RSJ</h2>
+            <h2>Login</h2>
         </div>
     </md-toolbar>
     <form ng-submit="login(user)" >
         <md-dialog-content>
+            <br>
             <div layout="column" layout-margin>
                 <md-input-container class="md-block">
                     <label>Email</label>
@@ -18,7 +19,9 @@
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row" layout-align="center">
-            <md-button type="submit">Login</md-button>
+            <md-button class="md-primary" type="submit">Login</md-button>
+            <!-- <md-button ng-click="goToCreateUser()">Create New User</md-button> -->
         </md-dialog-actions>
+
     </form>
 </md-dialog>

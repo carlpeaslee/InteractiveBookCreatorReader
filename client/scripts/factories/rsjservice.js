@@ -9,17 +9,20 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         });
     };
 
-    // var getUserData = function(){
-    //     $http.get("/user/profile").then(function(response){
-    //         user.data = response.data;
-    //     });
-    // };
-    //
-    // var postUserData = function(data){
-    //     $http.post("/user/editprofile", data).then(function(response){
-    //         getUserData();
-    //     });
-    // };
+    var getUserData = function(){
+        $http.get("/user/data").then(function(response){
+            user.data = response.data;
+            console.log(user.data);
+        });
+    };
+
+
+    var postUserData = function(data){
+        $http.post("/user/data", data).then(function(response){
+            getUserData();
+        });
+    };
+
     //
     //
     // var initialUserDataCall = function(){
@@ -37,7 +40,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
                 showLoginDialog();
             } else {
                 console.log("LOGGED IN! ", response.data);
-                $http.get("/user/name").then(function(response){
+                $http.get("/user/data").then(function(response){
                     user.data = response.data
                     user.isLoggedIn = true;
                     $mdDialog.hide();
@@ -53,7 +56,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:false
-      });
+        });
     };
 
     var login = function(data) {
@@ -77,6 +80,8 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         loginStatus: loginStatus,
         login: login,
         createUser: createUser,
+        postUserData: postUserData,
+        getUserData: getUserData,
         getPages: getPages,
         user: user,
         pages: pages

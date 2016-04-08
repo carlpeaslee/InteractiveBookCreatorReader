@@ -1,4 +1,4 @@
-<div ng-controller="ProfileController" ng-cloak>
+<div ng-cloak>
     <md-content>
         <form ng-submit="updateUserProfile(user)" >
         <div layout="row" layout-margin>
@@ -45,7 +45,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Postal Code</label>
-                    <input name="Zip Code" ng-model="user.zcode"
+                    <input name="Zip Code" ng-model="user.zipcode"
                     required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
                     <div ng-messages="userForm.zcode.$error" role="alert" multiple>
                         <div ng-message="required" class="my-message">You must supply a postal code.</div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div layout="row" layout-align="center">
-            <md-button ng-href="#profile" class="md-raised">Save Profile</md-button>
+            <md-button type="submit" class="md-raised">Save Profile</md-button>
         </div>
     </form>
     </md-content>

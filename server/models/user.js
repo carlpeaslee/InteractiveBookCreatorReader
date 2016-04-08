@@ -11,13 +11,13 @@ var User = new Schema({
     lname: { type : String , required : false },
     datecreated: { type : Date , default : Date.now },
     lastlogin: { type : Date },
-    phone: { type : Number , required : false },
+    phone: { type : String, default : null, required : false },
     address: { type : String , required : false },
     address2: { type : String , required : false },
     state: { type : String , required : false },
-    zipcode: { type : Number , required : false },
+    zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },
-    currentpage: { type : Number , required : false }
+    currentpage: { type : String, default : null, required : false }
 });
 
 
