@@ -17,6 +17,7 @@ router.get("/data", function(req,res,next){
         phone: req.user.phone,
         address: req.user.address,
         address2: req.user.address2,
+        city: req.user.city,
         state: req.user.state,
         zipcode: req.user.zipcode,
         currentbook: req.user.currentbook,
@@ -27,15 +28,18 @@ router.get("/data", function(req,res,next){
 });
 
 router.post("/data", function(req,res,next){
-    User.findOneAndUpdate({ '_id': req.user._id }, {
-        email: req.body.email,
-        fname: req.body.fname,
-        lname: req.body.lname,
-        phone: parseInt(req.body.phone),
-        address: req.body.address,
-        address2: req.body.address2,
-        state: req.body.state,
-        zipcode: parseInt(req.body.zipcode)
+    console.log(req.body);
+    console.log(req.body.data);
+    User.findOneAndUpdate({ '_id': req.body.data._id }, {
+        email: req.body.data.email,
+        fname: req.body.data.fname,
+        lname: req.body.data.lname,
+        phone: parseInt(req.body.data.phone),
+        address: req.body.data.address,
+        address2: req.body.data.address2,
+        city: req.body.data.city,
+        state: req.body.data.state,
+        zipcode: parseInt(req.body.data.zipcode)
     }, function(err, doc){
         if(err){
             console.log(err);

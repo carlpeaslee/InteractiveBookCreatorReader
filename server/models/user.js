@@ -14,6 +14,7 @@ var User = new Schema({
     phone: { type : String, default : null, required : false },
     address: { type : String , required : false },
     address2: { type : String , required : false },
+    city: { type : String , required : false },
     state: { type : String , required : false },
     zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },

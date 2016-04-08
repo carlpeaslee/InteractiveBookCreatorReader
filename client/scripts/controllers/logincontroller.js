@@ -3,4 +3,28 @@ myApp.controller('LoginController', ["$scope", "$http", "$location", "$mdDialog"
     $scope.login = rsjService.login;
     $scope.user = rsjService.user;
     $scope.user.isLoggedIn = false;
+    $scope.createUser = rsjService.createUser;
+
+    $scope.goToCreateUser = function(ev){
+        $mdDialog.hide();
+        $mdDialog.show({
+          templateUrl: 'assets/views/newuser.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+    };
+
+    $scope.backToLogin = function(ev){
+        $mdDialog.hide();
+        $mdDialog.show({
+          templateUrl: 'assets/views/login.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+    };
+
+
+
 }]);

@@ -41,7 +41,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
             } else {
                 console.log("LOGGED IN! ", response.data);
                 $http.get("/user/data").then(function(response){
-                    user.data = response.data
+                    user.data = response.data;
                     user.isLoggedIn = true;
                     $mdDialog.hide();
                     //are dialogs gettings randomly closed? this might be the problem!
@@ -69,14 +69,10 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
     var createUser = function(data) {
         console.log("trying to create a user");
         $http.post("/register", data).then(function(response){
-            console.log(response);
         });
     };
 
     return {
-        // postUserData: postUserData,
-        // getUserData: getUserData,
-        // initialUserDataCall: initialUserDataCall,
         loginStatus: loginStatus,
         login: login,
         createUser: createUser,
