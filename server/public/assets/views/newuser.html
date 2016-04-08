@@ -1,0 +1,25 @@
+
+</md-tab>
+<md-tab label="register">
+<form ng-submit="createUser(user)" >
+    <div layout="column" layout-margin>
+        <md-input-container class="md-block">
+            <label>Email</label>
+            <input type="text" ng-model="user.email">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <input type="password" ng-model="user.password">
+        </md-input-container>
+    </div>
+
+    <md-dialog-actions layout="row" layout-align="center">
+        <md-button type="submit">Save Profile</md-button>
+    </md-dialog-actions>
+
+
+</form>
+</md-tab>
+</md-tabs>
+</md-dialog-content>
+</md-dialog>

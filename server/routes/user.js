@@ -7,13 +7,13 @@ router.get("/", function(req,res,next){
 });
 
 router.get("/name", function(req,res,next){
-    console.log("Hi class! ", req.isAuthenticated());
-    var resUser = {
+    console.log("someone just logged in", req.isAuthenticated());
+    var userData = {
         email: req.user.email,
-        firstname: req.user.fname,
-        lastname: req.user.lname
+        fname: req.user.fname,
+        lname: req.user.lname
     };
-    res.json(resUser);
+    res.json(userData);
 });
 
 module.exports = router;
