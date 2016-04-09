@@ -6,7 +6,9 @@ var newpage = new Schema({
     book: { type : String , required : true },
     order: { type : Number , required : false },
     displaypage: { type : String , required : false },
-    content: { type : Array , required : true },
+    content: { type : Array , required : false },
+    question1: { type : Array , required : false },
+    question2: { type : Array , required : false },
     notes: { type : String , required : false }
 });
 

@@ -7,7 +7,7 @@ router.get("/", function(req,res,next){
 });
 
 router.get("/data", function(req,res,next){
-    console.log("someone just logged in", req.isAuthenticated());
+    console.log("user data requested", req.isAuthenticated());
     var resUserData = {
         email: req.user.email,
         fname: req.user.fname,

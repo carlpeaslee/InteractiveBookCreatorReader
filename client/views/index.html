@@ -25,11 +25,9 @@
 
 </head>
 <body ng-controller="UserController">
-    <!-- <div class="tint"></div> -->
+    <div class="tint"></div>
     <ng-include ng-show="user.isLoggedIn" src="'/assets/views/partials/nav.html'"></ng-include>
 
-    <!-- <ng-include ng-hide="user.isLoggedIn" src="'/assets/views/login.html'"></ng-include>
-    <ng-include ng-hide="user.isLoggedIn" src="'/assets/views/register.html'"></ng-include> -->
     <main ng-show="user.isLoggedIn" ng-view>
     </main>
 

@@ -2,6 +2,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
 
     var user = {};
     var pages = {};
+    var site = {};
 
     var getPages = function(){
         $http.get("/pages").then(function(response){
@@ -23,13 +24,11 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         });
     };
 
-    //
-    //
-    // var initialUserDataCall = function(){
-    //     if(user.data === undefined){
-    //         getUserData();
-    //     }
-    // };
+    var getQuestions = function(){
+        $http.get("/admin/questions").then(function(response){
+            site.allQuestions = response.data;
+        });
+    };
 
     var loginStatus =  function() {
         console.log("checking user login status");
@@ -80,6 +79,8 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         getUserData: getUserData,
         getPages: getPages,
         user: user,
-        pages: pages
+        pages: pages,
+        site: site,
+        getQuestions: getQuestions
     };
 }]);

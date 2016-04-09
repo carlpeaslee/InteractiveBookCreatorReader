@@ -3,13 +3,12 @@ var router = express.Router();
 var passport = require("passport");
 var path = require("path");
 
-// var pages = require("./pages.js");
-// var admin = require("./admin.js");
-// var users = require("./users.js");
-//
-// router.use("/pages", pages);
-// router.use("/admin", admin);
-// router.use("/user", users);
+var pages = require("./pages.js");
+var admin = require("./admin.js");
+
+
+router.use("/pages", pages);
+router.use("/admin", admin);
 
 router.post("/", passport.authenticate("local", {
     successRedirect: "/users/",

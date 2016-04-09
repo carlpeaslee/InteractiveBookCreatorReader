@@ -1,19 +1,29 @@
-<div class="whole-page" ng-controller="ReadController" md-swipe-left="pageForward()" md-swipe-right="pageBackward()">
+<div class="whole-page" md-swipe-left="pageForward()" md-swipe-right="pageBackward()">
     <div class="paper">
         <div ng-class="pages.data[currentPage].style + '-header'" ng-hide="pages.data[currentPage].style == 'five'">
             <p ng-hide="pages.data[currentPage].style == 'interactive'">
                 The Riftstone Journals
             </p>
         </div>
-        <div ng-class="pages.data[currentPage].style + '-body'">
-            <div ng-bind-html="pages.data[currentPage].content[0] | sanitize"></div>
+        <div ng-class="pages.data[currentPage].style + '-body'" ng-hide="pages.data[currentPage].style == 'interactive'">
+            <div ng-bind-html="pages.data[currentPage].content[0] | sanitize" ng-hide="pages.data[currentPage].style == 'interactive'"></div>
+        </div>
+
+        <div ng-class="pages.data[currentPage].style + '-body'" ng-show="pages.data[currentPage].style == 'interactive'">
+            <form>
+                <p>{{pages.data[currentPage].question1[0].prompt}}</p>
+                <textarea></textarea>
+            </form>
+            <div class="gap"></div>
+            <form>
+                <p>{{pages.data[currentPage].question2[0].prompt}}</p>
+                <textarea></textarea>
+            </form>
         </div>
         <div ng-class="pages.data[currentPage].style + '-footer'" ng-hide="pages.data[currentPage].style == 'five'">
             {{pages.data[currentPage].displaypage}}
         </div>
     </div>
-
-
     <div class="backwardsButton" ng-click="pageBackward()">
     </div>
     <div class="forwardsButton" ng-click="pageForward()">

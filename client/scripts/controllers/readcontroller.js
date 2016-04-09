@@ -1,7 +1,10 @@
-myApp.controller("ReadController", ["$scope", "$sce", "RSJService", function($scope, $sce, RSJService){
+myApp.controller("ReadController", ["$scope", "$sce", "$http", "RSJService", function($scope, $sce, $http, RSJService){
     var rsjService = RSJService;
 
+    rsjService.getQuestions();
     rsjService.getPages();
+
+    $scope.questions = rsjService.site;
 
     $scope.pages = rsjService.pages;
 

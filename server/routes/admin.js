@@ -39,6 +39,8 @@ router.post("/newpage", function (req, res) {
         "order" : req.body.order,
         "displaypage" : req.body.displaypage,
         "content" : req.body.content,
+        "question1" : req.body.question1,
+        "question2" : req.body.question2,    
         "notes" : req.body.notes
     });
     addedPage.save(function(err, data){
