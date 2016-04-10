@@ -2,7 +2,13 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
+// var UserAnswerSchema = require("../models/useranswer");
 
+var UserAnswerSchema = new Schema({
+    q_id: { type : String , required : true },
+    qprompt: { type : String , required : true },
+    answer: { type : String , required : false }
+});
 
 var User = new Schema({
     email: { type : String , required : false, index: {unique: true}},
@@ -18,7 +24,8 @@ var User = new Schema({
     state: { type : String , required : false },
     zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },
-    currentpage: { type : String, default : null, required : false }
+    currentpage: { type : String, required : false },
+    answers: [UserAnswerSchema]
 });
 
 

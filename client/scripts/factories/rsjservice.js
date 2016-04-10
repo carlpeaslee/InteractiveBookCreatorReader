@@ -24,6 +24,18 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         });
     };
 
+    var autoSaveAnswers = function(data){
+        $http.post("/user/autosave", data).then(function(response){
+        });
+    };
+
+    var autoSaveCurrentPage = function(data){
+        console.log("autoSaveCurrentPage fired");
+        $http.post("/user/currentpage", data).then(function(response){
+        });
+    };
+
+
     var getQuestions = function(){
         $http.get("/admin/questions").then(function(response){
             site.allQuestions = response.data;
@@ -81,6 +93,8 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         user: user,
         pages: pages,
         site: site,
-        getQuestions: getQuestions
+        getQuestions: getQuestions,
+        autoSaveAnswers: autoSaveAnswers,
+        autoSaveCurrentPage: autoSaveCurrentPage
     };
 }]);

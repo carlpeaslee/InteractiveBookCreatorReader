@@ -30,7 +30,7 @@ router.get("/data", function(req,res,next){
 router.post("/data", function(req,res,next){
     console.log(req.body);
     console.log(req.body.data);
-    User.findOneAndUpdate({ '_id': req.body.data._id }, {
+    User.findOneAndUpdate({ _id: req.user._id }, {
         email: req.body.data.email,
         fname: req.body.data.fname,
         lname: req.body.data.lname,
@@ -44,8 +44,42 @@ router.post("/data", function(req,res,next){
         if(err){
             console.log(err);
         }
+        res.send();
     });
 });
+
+router.post("/currentpage", function(req,res,next){
+    console.log(req.body);
+    console.log(req.user._id);
+    User.findOneAndUpdate({ _id: req.user._id }, {
+        currentpage: req.body.data.currentpage
+    }, function(err, doc){
+        if(err){
+            console.log(err);
+        }
+        res.send();
+    });
+});
+
+
+
+router.post("/autosave", function(req,res,next){
+    // console.log(req.body);
+    // console.log(req.user);
+    // var newAnswer = new UserAnswerSchema ({
+    //     "q_id": req.body.q_id,
+    //     "answer": req.body.answer
+    // });
+    // User.findOneAndUpdate({ '_id': req.user._id }, {
+    //     answers.push(newAnswer);
+    // }, function(err, doc){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    // });
+});
+
+
 
 
 module.exports = router;
