@@ -5,6 +5,7 @@
                 The Riftstone Journals
             </p>
         </div>
+        
         <div ng-class="pages.data[currentpage].style + '-body'" ng-hide="pages.data[currentpage].style == 'interactive'">
             <div ng-bind-html="pages.data[currentpage].content[0] | sanitize" ng-hide="pages.data[currentpage].style == 'interactive'"></div>
         </div>
@@ -21,6 +22,7 @@
                 <textarea></textarea>
             </form>
         </div>
+
         <div ng-class="pages.data[currentpage].style + '-footer'" ng-hide="pages.data[currentpage].style == 'five'">
             {{pages.data[currentpage].displaypage}}
         </div>

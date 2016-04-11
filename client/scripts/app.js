@@ -22,7 +22,7 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
             templateUrl: "/assets/views/readon.html",
             controller: "ReadController"
         }).
-        when("/aa/:book/:page", {
+        when("/aa", {
             templateUrl: "/assets/views/aa/test.html",
             controller: "ReadController"
         }).
@@ -46,5 +46,5 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
             redirectTo: '/'
         });
 
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 }]);

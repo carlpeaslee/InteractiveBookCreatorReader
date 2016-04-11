@@ -25,7 +25,7 @@ var user = new Schema({
     zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },
     currentpage: { type : String, required : false },
-    answers: [userAnswerSchema]
+    answers: []
 });
 
 

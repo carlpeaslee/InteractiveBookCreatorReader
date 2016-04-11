@@ -67,7 +67,7 @@ router.post("/autosave", function(req,res,next){
     console.log("hit the autosave route");
     console.log(req.body);
     console.log(req.user._id);
-    User.user.findOne({'_id':req.user._id}, function(err, user){
+    User.findOne({'_id':req.user._id}, function(err, user){
         if(err){
             console.log(err);
         }else {

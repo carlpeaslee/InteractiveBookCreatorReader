@@ -1,7 +1,5 @@
-myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$routeParams", "RSJService", function($scope, $sce, $http, $location, $routeParams, RSJService){
+myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$route", "$routeParams", "RSJService", function($scope, $sce, $http, $location, $route, $routeParams, RSJService){
     var rsjService = RSJService;
-
-    console.log()
 
     // rsjService.getUserData();
     rsjService.initialPageGet();
@@ -39,8 +37,8 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         rsjService.autoSaveAnswers($scope.answer1);
     };
 
-    console.log($routeParams.book);
     console.log($routeParams.page);
+
 
 
     //$location.url('/aa/' + $scope.currentpage);
