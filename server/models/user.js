@@ -2,10 +2,15 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
-// var UserAnswerSchema = require("../models/useranswer");
 
 
-var user = new Schema({
+var AnswerSchema = new Schema({
+    qid: { type : String , required : true },
+    qprompt: { type : String , required : true },
+    answer: { type : String , required : false }
+});
+
+var User = new Schema({
     email: { type : String , required : false, index: {unique: true}},
     password: {type: String, required: true},
     fname: { type : String , required : false },
@@ -20,26 +25,27 @@ var user = new Schema({
     zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },
     currentpage: { type : String, required : false },
-    answers: []
+    answers: [AnswerSchema]
 });
 
 
-user.pre("save", function(next){
-    console.log("Made it into Pre!");
-    var user = this;
-    if(!user.isModified("password")) return next;
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
-        if(err) return next(err);
-        bcrypt.hash(user.password, salt, function(err, hash){
-            if(err) return next(err);
-            user.password = hash;
-            console.log("Did I hash? : " , user.password);
-            next();
-        });
-    });
-});
+// User.pre("save", function(next){
+//     console.log("Made it into Pre!", this);
+//     var user = this;
+//     console.log(user);
+//     if(!user.isModified("password")) return next;
+//     bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
+//         if(err) return next(err);
+//         bcrypt.hash(user.password, salt, function(err, hash){
+//             if(err) return next(err);
+//             user.password = hash;
+//             console.log("Did I hash? : " , user.password);
+//             next();
+//         });
+//     });
+// });
 
-user.methods.comparePassword = function(candidatePassword, cb){
+User.methods.comparePassword = function(candidatePassword, cb){
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
         if(err) return cb(err);
         cb(null, isMatch);
@@ -47,6 +53,4 @@ user.methods.comparePassword = function(candidatePassword, cb){
 };
 
 
-// module.exports = mongoose.model("user", User);
-
-module.exports = mongoose.model("user", user);
+module.exports = mongoose.model("users", User);

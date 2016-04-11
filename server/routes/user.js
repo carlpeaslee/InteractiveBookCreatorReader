@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
-var AnswerSchema = require("../models/answerschema")
 
 router.get("/", function(req,res,next){
     res.json(req.isAuthenticated());
@@ -65,25 +64,30 @@ router.post("/currentpage", function(req,res,next){
 
 
 router.post("/autosave", function(req,res,next){
-    console.log("hit the autosave route");
-    console.log(req.body);
-    console.log(req.user._id);
-    User.findOne({'_id':req.user._id}, function(err, user){
-        if(err){
-            console.log(err);
-        }else {
-            console.log(user);
-            var newAnswer = new AnswerSchema ({
-                qid: req.body.q_id,
-                qprompt: req.body.prompt,
-                answer: req.body.answer
-            });
-            user.answers.push(newAnswer);
+    console.log("hit autosave");
+    User.findById(req.user._id, function (err, user){
+        if (err) {
+            console.log(err)
         }
-        res.json(user);
+        console.log("hit findById and this is the user:", user);
+        var newAnswer = user.answers.create({
+            qid: req.body.q_id,
+            qprompt: req.body.prompt,
+            answer: req.body.answer
+        });
+
+        user.answers.push(newAnswer);
+
+        user.save(function(err, user) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('something got saved');
+            }
+            res.json();
+        });
     });
 });
-
 
 
 
