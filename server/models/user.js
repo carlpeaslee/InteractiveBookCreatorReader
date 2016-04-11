@@ -4,11 +4,6 @@ var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
 // var UserAnswerSchema = require("../models/useranswer");
 
-var userAnswerSchema = new Schema({
-    qid: { type : String , required : true },
-    qprompt: { type : String , required : true },
-    answer: { type : String , required : false }
-});
 
 var user = new Schema({
     email: { type : String , required : false, index: {unique: true}},
@@ -54,5 +49,4 @@ user.methods.comparePassword = function(candidatePassword, cb){
 
 // module.exports = mongoose.model("user", User);
 
-exports.user = mongoose.model('user', user);
-exports.userAnswerSchema = mongoose.model('userAnswerSchema', userAnswerSchema);
+module.exports = mongoose.model("user", user);

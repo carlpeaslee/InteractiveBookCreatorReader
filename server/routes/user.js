@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
+var AnswerSchema = require("../models/answerschema")
 
 router.get("/", function(req,res,next){
     res.json(req.isAuthenticated());
@@ -72,41 +73,15 @@ router.post("/autosave", function(req,res,next){
             console.log(err);
         }else {
             console.log(user);
-            User.userAnswerSchema.create({
+            var newAnswer = new AnswerSchema ({
                 qid: req.body.q_id,
                 qprompt: req.body.prompt,
                 answer: req.body.answer
-             },
-            function(err, addedAnswer){
-                user.answers.push(addedAnswer);
-                user.save(function(err){
-                    if(err){
-                        console.log(err);
-                    } else {
-                        res.status(200).send();
-                    }
-                })
-
-            })
+            });
+            user.answers.push(newAnswer);
         }
+        res.json(user);
     });
-
-    // User.user.findOneAndUpdate({ "_id": req.user._id, "answers.q_id": req.body.q_id },
-    //     {
-    //         "$set": {
-    //             "answers.$.q_id": req.body.q_id,
-    //             "answers.$.qprompt": req.body.qprompt,
-    //             "answers.$.answer": req.body.answer
-    //         }
-    //     },
-    //     function(err,doc) {
-    //         if(err){
-    //             console.log(err);
-    //         } else {
-    //             res.status(200).send();
-    //         }
-    //     }
-    // );
 });
 
 

@@ -10,6 +10,8 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
 
     $scope.currentpage = rsjService.user.data.currentpage;
 
+    $scope.user = rsjService.user;
+
     $scope.pageForward = function() {
         console.log("pageForward fired");
         $scope.currentpage++;
