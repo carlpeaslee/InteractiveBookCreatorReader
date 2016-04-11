@@ -64,19 +64,49 @@ router.post("/currentpage", function(req,res,next){
 
 
 router.post("/autosave", function(req,res,next){
-    // console.log(req.body);
-    // console.log(req.user);
-    // var newAnswer = new UserAnswerSchema ({
-    //     "q_id": req.body.q_id,
-    //     "answer": req.body.answer
-    // });
-    // User.findOneAndUpdate({ '_id': req.user._id }, {
-    //     answers.push(newAnswer);
-    // }, function(err, doc){
-    //     if(err){
-    //         console.log(err);
+    console.log("hit the autosave route");
+    console.log(req.body);
+    console.log(req.user._id);
+    User.user.findOne({'_id':req.user._id}, function(err, user){
+        if(err){
+            console.log(err);
+        }else {
+            console.log(user);
+            User.userAnswerSchema.create({
+                qid: req.body.q_id,
+                qprompt: req.body.prompt,
+                answer: req.body.answer
+             },
+            function(err, addedAnswer){
+                user.answers.push(addedAnswer);
+                user.save(function(err){
+                    if(err){
+                        console.log(err);
+                    } else {
+                        res.status(200).send();
+                    }
+                })
+
+            })
+        }
+    });
+
+    // User.user.findOneAndUpdate({ "_id": req.user._id, "answers.q_id": req.body.q_id },
+    //     {
+    //         "$set": {
+    //             "answers.$.q_id": req.body.q_id,
+    //             "answers.$.qprompt": req.body.qprompt,
+    //             "answers.$.answer": req.body.answer
+    //         }
+    //     },
+    //     function(err,doc) {
+    //         if(err){
+    //             console.log(err);
+    //         } else {
+    //             res.status(200).send();
+    //         }
     //     }
-    // });
+    // );
 });
 
 

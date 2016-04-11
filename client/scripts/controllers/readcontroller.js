@@ -1,9 +1,10 @@
-myApp.controller("ReadController", ["$scope", "$sce", "$http", "RSJService", function($scope, $sce, $http, RSJService){
+myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$routeParams", "RSJService", function($scope, $sce, $http, $location, $routeParams, RSJService){
     var rsjService = RSJService;
 
-    rsjService.getUserData();
-    rsjService.getQuestions();
-    rsjService.getPages();
+    console.log()
+
+    // rsjService.getUserData();
+    rsjService.initialPageGet();
 
     $scope.questions = rsjService.site;
 
@@ -15,12 +16,14 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "RSJService", fun
         console.log("pageForward fired");
         $scope.currentpage++;
         rsjService.user.data.currentpage = $scope.currentpage;
+        //$location.path('/aa/' + $scope.currentpage);
         rsjService.autoSaveCurrentPage(rsjService.user);
     };
 
     $scope.pageBackward = function() {
         $scope.currentpage--;
         rsjService.user.data.currentpage = $scope.currentpage;
+        //$location.path('/aa/' + $scope.currentpage);
         rsjService.autoSaveCurrentPage(rsjService.user);
     };
 
@@ -36,4 +39,11 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "RSJService", fun
         rsjService.autoSaveAnswers($scope.answer1);
     };
 
+    console.log($routeParams.book);
+    console.log($routeParams.page);
+
+
+    //$location.url('/aa/' + $scope.currentpage);
+
+    //$location.path('/aa/' + $scope.currentpage);
 }]);

@@ -1,4 +1,4 @@
-myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
+myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, $mdDialog, $location){
 
     var user = {};
     var pages = {};
@@ -8,6 +8,14 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         $http.get("/pages").then(function(response){
             pages.data = response.data;
         });
+    };
+
+    var initialPageGet = function(){
+        if (pages.data == undefined) {
+            $http.get("/pages").then(function(response){
+                pages.data = response.data;
+            });
+        }
     };
 
     var getUserData = function(){
@@ -54,6 +62,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
                 $http.get("/user/data").then(function(response){
                     user.data = response.data;
                     user.isLoggedIn = true;
+                    $location.path('/library');
                     $mdDialog.hide();
                     //are dialogs gettings randomly closed? this might be the problem!
                 });
@@ -95,6 +104,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", function($http, $mdDialog){
         site: site,
         getQuestions: getQuestions,
         autoSaveAnswers: autoSaveAnswers,
-        autoSaveCurrentPage: autoSaveCurrentPage
+        autoSaveCurrentPage: autoSaveCurrentPage,
+        initialPageGet: initialPageGet
     };
 }]);

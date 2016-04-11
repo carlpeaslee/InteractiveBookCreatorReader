@@ -38,7 +38,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-    User.findById(id, function(err, user){
+    User.user.findById(id, function(err, user){
         if(err) done(err);
         done(null, user);
     });
@@ -48,7 +48,7 @@ passport.use("local", new localStrategy({
       passReqToCallback : true,
       usernameField: 'email'
   }, function(req, email, password, done){
-        User.findOne({email: email}, function(err,user){
+        User.user.findOne({email: email}, function(err,user){
             if(err) throw err;
             if(!user){
               return done(null, false, {message: "Incorrect username or password"});

@@ -12,25 +12,17 @@ myApp.config(['$mdThemingProvider', function($mdThemingProvider){
         .primaryPalette('purple');
 }]);
 
-myApp.config(["$routeProvider", function($routeProvider){
+myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
     $routeProvider.
         when("/admin", {
             templateUrl: "/assets/views/admin/main.html",
             controller: "AdminController"
         }).
-        when("/login", {
-            templateUrl: "/assets/views/login.html",
-            controller: "LoginController"
-        }).
-        when("/register", {
-            templateUrl: "/assets/views/register.html",
-            controller: "RegisterController"
-        }).
         when("/readon", {
             templateUrl: "/assets/views/readon.html",
             controller: "ReadController"
         }).
-        when("/aa", {
+        when("/aa/:book/:page", {
             templateUrl: "/assets/views/aa/test.html",
             controller: "ReadController"
         }).
@@ -51,6 +43,8 @@ myApp.config(["$routeProvider", function($routeProvider){
             controller: "ProfileController"
         }).
         otherwise({
-            redirectTo: '/library'
+            redirectTo: '/'
         });
+
+    $locationProvider.html5Mode(true);
 }]);

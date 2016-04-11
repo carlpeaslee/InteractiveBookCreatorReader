@@ -4,13 +4,13 @@ var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
 // var UserAnswerSchema = require("../models/useranswer");
 
-var UserAnswerSchema = new Schema({
-    q_id: { type : String , required : true },
+var userAnswerSchema = new Schema({
+    qid: { type : String , required : true },
     qprompt: { type : String , required : true },
     answer: { type : String , required : false }
 });
 
-var User = new Schema({
+var user = new Schema({
     email: { type : String , required : false, index: {unique: true}},
     password: {type: String, required: true},
     fname: { type : String , required : false },
@@ -25,11 +25,11 @@ var User = new Schema({
     zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },
     currentpage: { type : String, required : false },
-    answers: [UserAnswerSchema]
+    answers: [userAnswerSchema]
 });
 
 
-User.pre("save", function(next){
+user.pre("save", function(next){
     console.log("Made it into Pre!");
     var user = this;
     if(!user.isModified("password")) return next;
@@ -44,7 +44,7 @@ User.pre("save", function(next){
     });
 });
 
-User.methods.comparePassword = function(candidatePassword, cb){
+user.methods.comparePassword = function(candidatePassword, cb){
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
         if(err) return cb(err);
         cb(null, isMatch);
@@ -52,4 +52,7 @@ User.methods.comparePassword = function(candidatePassword, cb){
 };
 
 
-module.exports = mongoose.model("user", User);
+// module.exports = mongoose.model("user", User);
+
+exports.user = mongoose.model('user', user);
+exports.userAnswerSchema = mongoose.model('userAnswerSchema', userAnswerSchema);
