@@ -1,4 +1,4 @@
-myApp.controller("AdminController", ["$scope", "$sce", "AdminService", function($scope, $sce, AdminService){
+myApp.controller("AdminController", ["$scope", "$sce", "$compile", '$filter', "AdminService", function($scope, $sce, $compile, $filter, AdminService){
     var adminService = AdminService;
 
     $scope.newquestion = {};

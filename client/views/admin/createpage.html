@@ -29,12 +29,14 @@
                         <input type="number" ng-model="newpage.displaypage">
                     </md-input-container>
                 </div>
-                <div ng-show="newpage.style == 'interactive'" layout="row">
+                <div layout="row">
                     <div flex="100">
+                        <h4>Add Questions</h4>
                         <br>
                         <md-autocomplete md-selected-item="newpage.question1" md-search-text="whatText" md-items="one in admin.questions" md-item-text="one.prompt">
                             <span md-highlight-text="whatText">{{one.prompt}}</span>
                         </md-autocomplete>
+                        <h5>{{newpage.question1._id}}</h5>
                         <br>
                         <md-autocomplete md-selected-item="newpage.question2" md-search-text="searchText" md-items="two in admin.questions" md-item-text="two.prompt">
                             <span md-highlight-text="searchText">{{two.prompt}}</span>
@@ -48,7 +50,7 @@
                         <md-header>&ampemsp;</md-header>
                         <md-input-container class="md-block">
                             <label>Text Content</label>
-                            <textarea ng-model="newpage.content" rows="15">
+                            <textarea ng-model="newpage.content" ng-change="html=newpage.content" rows="15">
                             </textarea>
                         </md-input-container>
                     </div>
@@ -75,12 +77,17 @@
                 <div class="paper-admin">
                     <div ng-class="newpage.style + '-header-admin'" ng-hide="newpage.style == 'five'">
                         <p ng-show="newpage.style" ng-hide="newpage.style == 'interactive'">
-                            The Riftstone Journals
+                            Carl's Test Book
                         </p>
                     </div>
-                    <div ng-class="newpage.style + '-body-admin'" ng-hide="newpage.style == 'interactive'">
+                    <!-- <div ng-class="newpage.style + '-body-admin'" ng-hide="newpage.style == 'interactive'">
                         <div ng-bind-html="newpage.content | sanitize" ng-hide="newpage.style == 'interactive'"></div>
+                    </div> -->
+
+                    <div ng-class="newpage.style + '-body-admin'" ng-hide="newpage.style == 'interactive'">
+                        <div dynamic="html"></div>
                     </div>
+
                     <div ng-class="newpage.style + '-body-admin'" ng-show="newpage.style == 'interactive'">
                         <form>
                             <p>{{newpage.question1.prompt}}</p>

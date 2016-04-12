@@ -2,20 +2,17 @@
     <div class="paper">
         <div ng-class="pages.data[currentpage].style + '-header'" ng-hide="pages.data[currentpage].style == 'five'">
             <p ng-hide="pages.data[currentpage].style == 'interactive'">
-                The Riftstone Journals
+                Carl's Test Book
             </p>
         </div>
 
-        <!-- <div ng-class="pages.data[currentpage].style + '-body'" ng-hide="pages.data[currentpage].style == 'interactive'">
-            <div ng-bind-html="pages.data[currentpage].content[0] | sanitize" ng-hide="pages.data[currentpage].style == 'interactive'"></div>
-        </div> -->
 
         <div ng-class="pages.data[currentpage].style + '-body'" ng-hide="pages.data[currentpage].style == 'interactive'">
             <div dynamic="html"></div>
         </div>
 
 
-        <div ng-class="pages.data[currentpage].style + '-body'" ng-show="pages.data[currentpage].style == 'interactive'">
+        <!-- <div ng-class="pages.data[currentpage].style + '-body'" ng-show="pages.data[currentpage].style == 'interactive'">
             <form>
                 <p ng-model="answer1.prompt">{{pages.data[currentpage].question1[0].prompt}}</p>
                 <textarea ng-model="answer1.answer"></textarea>
@@ -26,7 +23,7 @@
                 <p>{{pages.data[currentpage].question2[0].prompt}}</p>
                 <textarea></textarea>
             </form>
-        </div>
+        </div> -->
 
         <div ng-class="pages.data[currentpage].style + '-footer'" ng-hide="pages.data[currentpage].style == 'five'">
             {{pages.data[currentpage].displaypage}}

@@ -63,13 +63,13 @@ router.post("/currentpage", function(req,res,next){
 
 router.post("/autosave", function(req,res,next){
     console.log("hit autosave");
-    User.findById(req.body.user_id, function (err, user){
+    User.findById(req.user._id, function (err, user){
         if (err) {
             console.log(err)
         }
         console.log("hit findById and this is the user:", user);
         var newAnswer = user.answers.create({
-            qid: req.body.q_id,
+            qid: req.body._id,
             qprompt: req.body.prompt,
             answer: req.body.answer
         });
@@ -77,7 +77,9 @@ router.post("/autosave", function(req,res,next){
         user.answers.push(newAnswer);
 
         user.save(function (err) {
-            if (err) return handleError(err)
+            if (err) {
+                console.log(err);
+            }
             console.log('Success!');
         });
 

@@ -41,6 +41,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
     var autoSaveAnswers = function(data){
         console.log("autoSaveAnswers fired and sent:", data);
         $http.post("/user/autosave", data).then(function(response){
+            console.log("response from autosave", response);
         });
     };
 

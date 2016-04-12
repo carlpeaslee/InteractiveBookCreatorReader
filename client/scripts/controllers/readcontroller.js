@@ -30,16 +30,12 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         rsjService.autoSaveCurrentPage(rsjService.user);
     };
 
-    $scope.answer1 = {};
-    $scope.answer1.answer = "";
-    $scope.answer1.user_id = rsjService.user.data._id;
+    $scope.answer1 = $scope.pages.data[$scope.currentpage].question1[0];
 
 
-    $scope.autoSaveAnswers = function(){
-        $scope.answer1.q_id = $scope.pages.data[$scope.currentpage].question1[0]._id;
-        $scope.answer1.prompt = $scope.pages.data[$scope.currentpage].question1[0].prompt;
-        console.log("autoSaveAnswers fired", $scope.answer1);
-        rsjService.autoSaveAnswers($scope.answer1);
+    $scope.autoSaveAnswers = function(data){
+        console.log("autoSaveAnswers fired", data);
+        rsjService.autoSaveAnswers(data);
     };
 
     $scope.html = $scope.pages.data[$scope.currentpage].content[0];
