@@ -5,10 +5,15 @@
                 The Riftstone Journals
             </p>
         </div>
-        
-        <div ng-class="pages.data[currentpage].style + '-body'" ng-hide="pages.data[currentpage].style == 'interactive'">
+
+        <!-- <div ng-class="pages.data[currentpage].style + '-body'" ng-hide="pages.data[currentpage].style == 'interactive'">
             <div ng-bind-html="pages.data[currentpage].content[0] | sanitize" ng-hide="pages.data[currentpage].style == 'interactive'"></div>
+        </div> -->
+
+        <div ng-class="pages.data[currentpage].style + '-body'" ng-hide="pages.data[currentpage].style == 'interactive'">
+            <div dynamic="html"></div>
         </div>
+
 
         <div ng-class="pages.data[currentpage].style + '-body'" ng-show="pages.data[currentpage].style == 'interactive'">
             <form>

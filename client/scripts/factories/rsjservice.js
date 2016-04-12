@@ -5,34 +5,41 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
     var site = {};
 
     var getPages = function(){
+        console.log("getPages fired");
         $http.get("/pages").then(function(response){
             pages.data = response.data;
+            console.log("rsjService.pages.data :", pages.data);
         });
     };
 
     var initialPageGet = function(){
+        console.log("initialPageGet fired");
         if (pages.data == undefined) {
             $http.get("/pages").then(function(response){
                 pages.data = response.data;
+                console.log("rsjService.pages.data :", pages.data);
             });
         }
     };
 
     var getUserData = function(){
+        console.log("getUserData fired");
         $http.get("/user/data").then(function(response){
             user.data = response.data;
-            console.log(user.data);
+            console.log("rsjService.user.data :", user.data);
         });
     };
 
 
     var postUserData = function(data){
+        console.log("postUserData fired and sent:", data);
         $http.post("/user/data", data).then(function(response){
             getUserData();
         });
     };
 
     var autoSaveAnswers = function(data){
+        console.log("autoSaveAnswers fired and sent:", data);
         $http.post("/user/autosave", data).then(function(response){
         });
     };
@@ -45,8 +52,10 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
 
 
     var getQuestions = function(){
+        console.log("getQuestions fired");
         $http.get("/admin/questions").then(function(response){
             site.allQuestions = response.data;
+            console.log("rsjService.site.allQuestions was set to", site.allQuestions);
         });
     };
 
@@ -61,6 +70,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
                 console.log("LOGGED IN! ", response.data);
                 $http.get("/user/data").then(function(response){
                     user.data = response.data;
+                    console.log("rsjService.user.data was set to:", user.data);
                     user.isLoggedIn = true;
                     $location.path('/library');
                     $mdDialog.hide();
@@ -80,14 +90,14 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
     };
 
     var login = function(data) {
-        console.log("trying to login");
+        console.log("login fired");
         $http.post("/", data).then(function(response){
             loginStatus();
         });
     };
 
     var createUser = function(data) {
-        console.log("trying to create a user");
+        console.log("createUser fired");
         $http.post("/register", data).then(function(response){
         });
     };

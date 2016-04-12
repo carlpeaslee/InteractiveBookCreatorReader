@@ -28,9 +28,8 @@ router.get("/data", function(req,res,next){
 });
 
 router.post("/data", function(req,res,next){
-    console.log(req.body);
-    console.log(req.body.data);
-    User.findOneAndUpdate({ _id: req.user._id }, {
+    console.log("user data post triggered");
+    User.findOneAndUpdate({ _id: req.body.data._id }, {
         email: req.body.data.email,
         fname: req.body.data.fname,
         lname: req.body.data.lname,
@@ -49,9 +48,8 @@ router.post("/data", function(req,res,next){
 });
 
 router.post("/currentpage", function(req,res,next){
-    console.log(req.body);
-    console.log(req.user._id);
-    User.findOneAndUpdate({ _id: req.user._id }, {
+    console.log("page change requested");
+    User.findOneAndUpdate({ _id: req.body.data._id }, {
         currentpage: req.body.data.currentpage
     }, function(err, doc){
         if(err){
@@ -65,7 +63,7 @@ router.post("/currentpage", function(req,res,next){
 
 router.post("/autosave", function(req,res,next){
     console.log("hit autosave");
-    User.findById(req.user._id, function (err, user){
+    User.findById(req.body.user_id, function (err, user){
         if (err) {
             console.log(err)
         }
@@ -78,14 +76,12 @@ router.post("/autosave", function(req,res,next){
 
         user.answers.push(newAnswer);
 
-        user.save(function(err, user) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('something got saved');
-            }
-            res.json();
+        user.save(function (err) {
+            if (err) return handleError(err)
+            console.log('Success!');
         });
+
+        res.json();
     });
 });
 
