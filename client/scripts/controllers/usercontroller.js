@@ -21,6 +21,5 @@ myApp.controller('UserController', ["$scope", "$http", "$location", "$mdDialog",
         rsjService.showLoginDialog();
     };
 
-    rsjService.initialPageGet();
 
 }]);

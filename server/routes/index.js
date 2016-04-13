@@ -11,7 +11,7 @@ router.use("/pages", pages);
 router.use("/admin", admin);
 
 router.post("/", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/user/",
     failureRedirect: "/"
 }));
 

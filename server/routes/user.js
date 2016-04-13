@@ -9,7 +9,7 @@ router.get("/", function(req,res,next){
 router.get("/data", function(req,res,next){
     console.log("user data requested", req.isAuthenticated());
     var resUserData = {
-        email: req.user.email,
+        username: req.user.username,
         fname: req.user.fname,
         lname: req.user.lname,
         datecreated: req.user.datecreated,
@@ -30,8 +30,8 @@ router.get("/data", function(req,res,next){
 
 router.post("/data", function(req,res,next){
     console.log("user data post triggered");
-    User.findOneAndUpdate({ _id: req.body.data._id }, {
-        email: req.body.data.email,
+    User.findOneAndUpdate({ _id: req.user._id }, {
+        username: req.body.data.username,
         fname: req.body.data.fname,
         lname: req.body.data.lname,
         phone: parseInt(req.body.data.phone),
@@ -44,19 +44,19 @@ router.post("/data", function(req,res,next){
         if(err){
             console.log(err);
         }
-        res.send();
+        res.json();
     });
 });
 
 router.post("/currentpage", function(req,res,next){
     console.log("page change requested");
-    User.findOneAndUpdate({ _id: req.body.data._id }, {
+    User.findOneAndUpdate({ _id: req.user._id }, {
         currentpage: req.body.data.currentpage
     }, function(err, doc){
         if(err){
             console.log(err);
         }
-        res.send();
+    res.json();
     });
 });
 
@@ -64,30 +64,18 @@ router.post("/currentpage", function(req,res,next){
 
 router.post("/autosave", function(req,res,next){
     console.log("hit autosave, req.user._id: ", req.user._id);
-    User.findById(req.user._id, function (err, user){
-        if (err) {
-            console.log(err)
-        }
-        console.log("hit findById and this is the user:", user);
-        var newAnswer = user.answers.create({
+    var newAnswer = {
             qid: req.body._id,
             qprompt: req.body.prompt,
             answer: req.body.answer
-        });
-
-        user.answers.push(newAnswer);
-
-        user.save(function (err) {
-            if (err) {
-                console.log(err);
-            }
-            console.log('Success!');
-        });
-
-        res.json();
+    };
+    User.findOneAndUpdate(req.user._id,
+        { $push: { answers: newAnswer } },
+        { upsert: true }, // upsert looks to find a Message with that id and if it doesn't exist creates the Message
+        function(err, data) {
     });
+    res.json();
 });
-
 
 
 module.exports = router;

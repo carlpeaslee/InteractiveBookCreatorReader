@@ -69,14 +69,12 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
                 showLoginDialog();
             } else {
                 console.log("LOGGED IN! ", response.data);
-                $http.get("/user/data").then(function(response){
-                    user.data = response.data;
-                    console.log("rsjService.user.data was set to:", user.data);
-                    user.isLoggedIn = true;
-                    $location.path('/library');
-                    $mdDialog.hide();
-                    //are dialogs gettings randomly closed? this might be the problem!
-                });
+                user.isLoggedIn = true;
+                getUserData();
+                getPages();
+                getQuestions();
+                $location.path('/library');
+                $mdDialog.hide();
             };
         });
     };
