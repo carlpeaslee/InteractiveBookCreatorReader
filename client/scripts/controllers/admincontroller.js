@@ -1,5 +1,8 @@
-myApp.controller("AdminController", ["$scope", "$sce", "$compile", '$filter', "AdminService", function($scope, $sce, $compile, $filter, AdminService){
+myApp.controller("AdminController", ["$scope", "$sce", "$compile", '$filter', "AdminService", "RSJService", function($scope, $sce, $compile, $filter, AdminService, RSJService){
     var adminService = AdminService;
+    var rsjService = RSJService;
+
+    $scope.record = RSJService.user.data.answers;
 
     $scope.newquestion = {};
     $scope.newpage = {};

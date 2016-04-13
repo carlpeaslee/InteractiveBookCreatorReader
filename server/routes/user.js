@@ -22,7 +22,8 @@ router.get("/data", function(req,res,next){
         zipcode: req.user.zipcode,
         currentbook: req.user.currentbook,
         currentpage: req.user.currentpage,
-        _id: req.user._id
+        _id: req.user._id,
+        answers: req.user.answers
     };
     res.json(resUserData);
 });
@@ -62,7 +63,7 @@ router.post("/currentpage", function(req,res,next){
 
 
 router.post("/autosave", function(req,res,next){
-    console.log("hit autosave");
+    console.log("hit autosave, req.user._id: ", req.user._id);
     User.findById(req.user._id, function (err, user){
         if (err) {
             console.log(err)

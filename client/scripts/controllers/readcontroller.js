@@ -3,6 +3,8 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
 
     // rsjService.getUserData();
 
+    $scope.record = RSJService.user.data.answers;
+
 
     $scope.questions = rsjService.site;
 
