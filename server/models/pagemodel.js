@@ -7,8 +7,8 @@ var newpage = new Schema({
     order: { type : Number , required : false },
     displaypage: { type : String , required : false },
     content: { type : Array , required : false },
-    question1: { type : Array , required : false },
-    question2: { type : Array , required : false },
+    question1: { type : Array , required : false, default: [] },
+    question2: { type : Array , required : false, default: [] },
     notes: { type : String , required : false }
 });
 
