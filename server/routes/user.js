@@ -2,18 +2,22 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
 
-router.get("/", function(req,res,next){
-    res.json(req.isAuthenticated());
-});
+var pages = require("./pages.js");
+var admin = require("./admin.js");
+
+var passport = require("passport");
+
+router.use("/pages", pages);
+router.use("/admin", admin);
 
 router.get("/data", function(req,res,next){
+    console.log(req.user);
     console.log("user data requested", req.isAuthenticated());
-    var resUserData = {
+    var respData = {
         username: req.user.username,
         fname: req.user.fname,
         lname: req.user.lname,
         datecreated: req.user.datecreated,
-        lastlogin: req.user.lastlogin,
         phone: req.user.phone,
         address: req.user.address,
         address2: req.user.address2,
@@ -25,11 +29,11 @@ router.get("/data", function(req,res,next){
         _id: req.user._id,
         answers: req.user.answers
     };
-    res.json(resUserData);
+    res.json(respData);
 });
 
 router.post("/data", function(req,res,next){
-    console.log("user data post triggered");
+    console.log("user data post triggered", req.isAuthenticated());
     User.findOneAndUpdate({ _id: req.user._id }, {
         username: req.body.data.username,
         fname: req.body.data.fname,
@@ -49,7 +53,7 @@ router.post("/data", function(req,res,next){
 });
 
 router.post("/currentpage", function(req,res,next){
-    console.log("page change requested");
+    console.log("page change requested", req.isAuthenticated());
     User.findOneAndUpdate({ _id: req.user._id }, {
         currentpage: req.body.data.currentpage
     }, function(err, doc){
@@ -63,7 +67,7 @@ router.post("/currentpage", function(req,res,next){
 
 
 router.post("/autosave", function(req,res,next){
-    console.log("hit autosave, req.user._id: ", req.user._id);
+    console.log("hit autosave, req.user._id: ", req.isAuthenticated(), req.user._id);
     var newAnswer = {
             qid: req.body._id,
             qprompt: req.body.prompt,

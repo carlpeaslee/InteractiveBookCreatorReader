@@ -6,25 +6,15 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
 
     var getPages = function(){
         console.log("getPages fired");
-        $http.get("/pages").then(function(response){
+        $http.get("/auth/user/pages").then(function(response){
             pages.data = response.data;
             console.log("rsjService.pages.data :", pages.data);
         });
     };
 
-    var initialPageGet = function(){
-        console.log("initialPageGet fired");
-        if (pages.data == undefined) {
-            $http.get("/pages").then(function(response){
-                pages.data = response.data;
-                console.log("rsjService.pages.data :", pages.data);
-            });
-        }
-    };
-
     var getUserData = function(){
         console.log("getUserData fired");
-        $http.get("/user/data").then(function(response){
+        $http.get("/auth/user/data").then(function(response){
             user.data = response.data;
             console.log("rsjService.user.data :", user.data);
         });
@@ -33,28 +23,28 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
 
     var postUserData = function(data){
         console.log("postUserData fired and sent:", data);
-        $http.post("/user/data", data).then(function(response){
+        $http.post("/auth/user/data", data).then(function(response){
             getUserData();
         });
     };
 
     var autoSaveAnswers = function(data){
         console.log("autoSaveAnswers fired and sent:", data);
-        $http.post("/user/autosave", data).then(function(response){
+        $http.post("/auth/user/autosave", data).then(function(response){
             console.log("response from autosave", response);
         });
     };
 
     var autoSaveCurrentPage = function(data){
         console.log("autoSaveCurrentPage fired");
-        $http.post("/user/currentpage", data).then(function(response){
+        $http.post("/auth/user/currentpage", data).then(function(response){
         });
     };
 
 
     var getQuestions = function(){
         console.log("getQuestions fired");
-        $http.get("/admin/questions").then(function(response){
+        $http.get("/auth/user/admin/questions").then(function(response){
             site.allQuestions = response.data;
             console.log("rsjService.site.allQuestions was set to", site.allQuestions);
         });
@@ -62,7 +52,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
 
     var loginStatus =  function() {
         console.log("checking user login status");
-        $http.get("/user").then(function(response){
+        $http.get("/login").then(function(response){
             if(response.data !== true){
                 console.log("NOT LOGGED IN!");
                 user.isLoggedIn = false;
@@ -90,7 +80,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
 
     var login = function(data) {
         console.log("login fired");
-        $http.post("/", data).then(function(response){
+        $http.post("/login", data).then(function(response){
             loginStatus();
         });
     };
@@ -113,7 +103,6 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
         site: site,
         getQuestions: getQuestions,
         autoSaveAnswers: autoSaveAnswers,
-        autoSaveCurrentPage: autoSaveCurrentPage,
-        initialPageGet: initialPageGet
+        autoSaveCurrentPage: autoSaveCurrentPage
     };
 }]);

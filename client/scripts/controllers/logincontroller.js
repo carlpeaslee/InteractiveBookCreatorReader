@@ -2,7 +2,6 @@ myApp.controller('LoginController', ["$scope", "$http", "$location", "$mdDialog"
     var rsjService = RSJService;
     $scope.login = rsjService.login;
     $scope.user = rsjService.user;
-    $scope.user.isLoggedIn = false;
     $scope.createUser = rsjService.createUser;
 
     $scope.goToCreateUser = function(ev){

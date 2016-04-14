@@ -3,7 +3,6 @@ myApp.controller('UserController', ["$scope", "$http", "$location", "$mdDialog",
     $scope.login = rsjService.login;
     $scope.createUser = rsjService.createUser;
     $scope.user = rsjService.user;
-    $scope.user.isLoggedIn = false;
     rsjService.loginStatus();
 
     $scope.goToCreateUser = function(){

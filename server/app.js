@@ -17,20 +17,6 @@ var user = require('./routes/user');
 
 var db = require("./utils/db.js");
 
-app.use(session({
-    secret: "secret",
-    key: "user",
-    resave: true,
-    s: false,
-    cookie: {maxAge: 60000, secure: false}
-}));
-
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 /** ---------- Configuring passport ---------- **/
 passport.serializeUser(function(user, done){
@@ -45,30 +31,47 @@ passport.deserializeUser(function(id, done){
 });
 
 passport.use("local", new localStrategy({
-      passReqToCallback : true,
-      usernameField: 'username'
-  }, function(req, username, password, done){
-        User.findOne({username: username}, function(err,user){
+    passReqToCallback : true,
+    usernameField: 'username'
+    }, function(req, username, password, done){
+    User.findOne({username: username}, function(err,user){
+        if(err) throw err;
+        if(!user){
+            return done(null, false, {message: "Incorrect username or password"});
+        }
+        user.comparePassword(password, function(err, isMatch){
             if(err) throw err;
-            if(!user){
-              return done(null, false, {message: "Incorrect username or password"});
+            if(isMatch){
+                return done(null, user);
+            } else {
+                done( null, false, {message: "Incorrect username or password"});
             }
-
-            user.comparePassword(password, function(err, isMatch){
-                if(err) throw err;
-                if(isMatch){
-                  return done(null, user);
-                } else {
-                  done( null, false, {message: "Incorrect username or password"});
-                }
-            });
         });
-    }
+    });
+}
 ));
 
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(session({
+    secret: "secret",
+    key: "user",
+    resave: true,
+    s: false,
+    cookie: {maxAge: 60000, secure: false}
+}));
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+
+
 /** ---------- ROUTES ---------- **/
-app.use("/register", register);
-app.use("/user", user); // START HERE TODAY
+
 app.use("/", index);
 
 app.set("port", (process.env.PORT || 5000));
