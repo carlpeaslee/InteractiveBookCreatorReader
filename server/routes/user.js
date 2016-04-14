@@ -11,7 +11,6 @@ router.use("/pages", pages);
 router.use("/admin", admin);
 
 router.get("/data", function(req,res,next){
-    console.log(req.user);
     console.log("user data requested", req.isAuthenticated());
     var respData = {
         username: req.user.username,
@@ -69,14 +68,22 @@ router.post("/currentpage", function(req,res,next){
 router.post("/autosave", function(req,res,next){
     console.log("hit autosave, req.user._id: ", req.isAuthenticated(), req.user._id);
     var newAnswer = {
-            qid: req.body._id,
-            qprompt: req.body.prompt,
+            _id: req.body._id,
+            prompt: req.body.prompt,
             answer: req.body.answer
     };
-    User.findOneAndUpdate(req.user._id,
-        { $push: { answers: newAnswer } },
-        { upsert: true }, // upsert looks to find a Message with that id and if it doesn't exist creates the Message
-        function(err, data) {
+    User.findById(req.user._id, function(err, found){
+        console.log(found);
+        var exists = found.answers.id(req.body._id);
+        console.log(exists);
+        if (exists == null) {
+            found.answers.push(newAnswer);
+        }
+        else {
+            exists.answer = req.body.answer;
+        }
+        console.log(found);
+        found.save();
     });
     res.json();
 });

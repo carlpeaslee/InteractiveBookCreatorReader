@@ -35,7 +35,7 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
         templateUrl: "/assets/views/readon.html",
         controller: "ReadController"
     }).
-    when("/aa", {
+    when("/read", {
         templateUrl: "/assets/views/aa/test.html",
         controller: "ReadController"
     }).

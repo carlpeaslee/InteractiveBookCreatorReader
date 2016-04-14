@@ -5,8 +5,7 @@ var SALT_WORK_FACTOR = 10;
 
 
 var AnswerSchema = new Schema({
-    qid: { type : String , required : true },
-    qprompt: { type : String , required : true },
+    prompt: { type : String , required : false },
     answer: { type : String , required : false }
 });
 
@@ -32,7 +31,7 @@ var UserSchema = new Schema({
 UserSchema.pre("save", function(next){
     console.log("Made it into Pre!");
     var user = this;
-    if(!user.isModified("password")) return next;
+    if(!user.isModified("password")) return next();
     bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
         if(err) return next(err);
         bcrypt.hash(user.password, salt, function(err, hash){

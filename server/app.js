@@ -58,7 +58,7 @@ app.use(session({
     key: "user",
     resave: true,
     s: false,
-    cookie: {maxAge: 60000, secure: false}
+    cookie: {maxAge: null, secure: false}
 }));
 
 app.use(bodyParser.urlencoded({extended: true}));

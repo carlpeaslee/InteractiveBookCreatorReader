@@ -6,6 +6,8 @@ myApp.controller("AdminController", ["$scope", "$sce", "$compile", '$filter', "A
 
     $scope.newquestion = {};
     $scope.newpage = {};
+    $scope.newpage.question1 = {};
+    $scope.answer1 = $scope.newpage.question1;
 
     $scope.admin = adminService.admin;
 

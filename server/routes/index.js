@@ -20,7 +20,7 @@ router.get("/login", function(req,res,next){
 });
 
 
-router.use('/auth/user', isLoggedIn, user);
+router.use('/auth/user', user);
 
 router.get("/*", function(req,res,next){
     var file = req.params[0] || "/assets/views/index.html";
