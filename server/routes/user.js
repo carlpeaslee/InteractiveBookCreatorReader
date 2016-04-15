@@ -59,7 +59,7 @@ router.post("/currentpage", function(req,res,next){
         if(err){
             console.log(err);
         }
-    res.json();
+    res.json(doc);
     });
 });
 
@@ -73,19 +73,16 @@ router.post("/autosave", function(req,res,next){
             answer: req.body.answer
     };
     User.findById(req.user._id, function(err, found){
-        console.log(found);
         var exists = found.answers.id(req.body._id);
-        console.log(exists);
         if (exists == null) {
             found.answers.push(newAnswer);
         }
         else {
             exists.answer = req.body.answer;
         }
-        console.log(found);
         found.save();
+        res.json(found);
     });
-    res.json();
 });
 
 

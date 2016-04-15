@@ -2,20 +2,20 @@
     <div class="paper">
 
         <!-- this is what renders the header on the page -->
-        <div ng-class="style + '-header'" ng-hide="style == 'five'">
+        <div ng-class="pageNow.style + '-header'" ng-hide="pageNow.style == 'five'">
             <p>
                 Carl's Test Book
             </p>
         </div>
 
         <!--this is what renders the body of the page  -->
-        <div ng-class="style + '-body'">
+        <div ng-class="pageNow.style + '-body'">
             <div dynamic="html"></div>
         </div>
 
         <!-- this is what renders the page number / footer  -->
-        <div ng-class="style + '-footer'" ng-hide="style == 'five'">
-            {{displaypage}}
+        <div ng-class="pageNow.style + '-footer'" ng-hide="pageNow.style == 'five'">
+            {{pageNow.displaypage}}
         </div>
     </div>
     <div class="backwardsButton" ng-click="pageBackward()">

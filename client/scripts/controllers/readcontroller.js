@@ -1,53 +1,71 @@
 myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$route", "$routeParams", "$compile", "$timeout", "RSJService", function($scope, $sce, $http, $location, $route, $routeParams, $compile, $timeout, RSJService){
     var rsjService = RSJService;
+    var index = 0;
+    var q = 0;
+    $scope.setIndex = function(){
+        for (var i = 0; i < rsjService.pages.data.length; i++) {
+            if (rsjService.pages.data[i].order == rsjService.user.data.currentpage) {
+                index = i;
+                $scope.pageNow = rsjService.pages.data[index];
+                $scope.html = rsjService.pages.data[index].content[0];
+            }
+        }
+    };
 
-    /*========user information=======*/
-    $scope.currentpage = rsjService.user.data.currentpage;  //user's current page -- this doesn't correspond to the page number
-    $scope.record = RSJService.user.data.answers; //all of the user's answer information
+    $scope.pageNow = rsjService.pages.data[index];
+    $scope.html = rsjService.pages.data[index].content[0];
 
-    /*========page information=======*/
-    $scope.style = rsjService.pages.data[$scope.currentpage].style; //tbe style of the current page, to be used for class and css styling
-    $scope.html = rsjService.pages.data[$scope.currentpage].content[0]; //the html and angular file that composes the pages body
-    $scope.displaypage = rsjService.pages.data[$scope.currentpage].displaypage; //the page number at the bottom of the page
-    $scope.answer1 = rsjService.pages.data[$scope.currentpage].question1[0]; //this is the object from the page information
 
+    $scope.answer1 = {
+        prompt : "",
+        answer : "",
+        _id : ""
+    };
+    console.log($scope.answer1);
+
+    $scope.setAnswer1 = function() {
+        if (rsjService.pages.data[index].question1[0]){
+            for (var q = 0; q < rsjService.user.data.answers.length; q++) {
+                if (rsjService.user.data.answers[q]._id == rsjService.pages.data[index].question1[0]._id) {
+                    $scope.answer1.answer = rsjService.user.data.answers[q].answer;
+                } else {
+                    $scope.answer1.answer = "";
+                }
+            }
+            $scope.answer1.prompt = rsjService.pages.data[index].question1[0].prompt;
+            $scope.answer1._id = rsjService.pages.data[index].question1[0]._id;
+            console.log($scope.answer1);
+        } else {
+            $scope.answer1.answer = "";
+            $scope.answer1.prompt = "";
+            $scope.answer1._id = "";
+            console.log($scope.answer1);
+        }
+    };
+
+    $scope.setIndex();
+    $scope.setAnswer1();
 
     $scope.pageForward = function() {
         console.log("pageForward fired");
-        //this changes the page number
-        $scope.currentpage++;
-        rsjService.user.data.currentpage = $scope.currentpage;
-        //this saves the page update to the database and forces all the scope variables to update in a kind of janky way
-        rsjService.autoSaveCurrentPage(rsjService.user);
-        $scope.style = rsjService.pages.data[$scope.currentpage].style; //tbe style of the current page, to be used for class and css styling
-        $scope.html = rsjService.pages.data[$scope.currentpage].content[0]; //the html and angular file that composes the pages body
-        $scope.displaypage = rsjService.pages.data[$scope.currentpage].displaypage; //the page number at the bottom of the page
-        $scope.answer1 = rsjService.pages.data[$scope.currentpage].question1[0]; //this is the object from the page information
-        $scope.currentpage = rsjService.user.data.currentpage;  //user's current page -- this doesn't correspond to the page number
-        $scope.record = RSJService.user.data.answers; //all of the user's answer information
+        rsjService.user.data.currentpage++;
+        $scope.setIndex();
+        $scope.setAnswer1();
+        //rsjService.autoSaveCurrentPage(rsjService.user);
     };
 
     $scope.pageBackward = function() {
         console.log("pageBackward fired");
-
-        //this changes the page number
-        $scope.currentpage--;
-        rsjService.user.data.currentpage = $scope.currentpage;
-        //this saves the page update to the database and forces all the scope variables to update in a kind of janky way
-        rsjService.autoSaveCurrentPage(rsjService.user);
-        $scope.style = rsjService.pages.data[$scope.currentpage].style; //tbe style of the current page, to be used for class and css styling
-        $scope.html = rsjService.pages.data[$scope.currentpage].content[0]; //the html and angular file that composes the pages body
-        $scope.displaypage = rsjService.pages.data[$scope.currentpage].displaypage; //the page number at the bottom of the page
-        $scope.answer1 = rsjService.pages.data[$scope.currentpage].question1[0]; //this is the object from the page information
-        $scope.currentpage = rsjService.user.data.currentpage;  //user's current page -- this doesn't correspond to the page number
-        $scope.record = RSJService.user.data.answers; //all of the user's answer information
+        rsjService.user.data.currentpage--;
+        $scope.setIndex();
+        $scope.setAnswer1();
+        //rsjService.autoSaveCurrentPage(rsjService.user);
     };
-
-
 
 
     $scope.autoSaveAnswers = function(data){
         console.log("autoSaveAnswers fired", data);
+        rsjService.user.data.answers[q].answer = $scope.answer1.answer;
         rsjService.autoSaveAnswers(data);
     };
 

@@ -32,13 +32,15 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
         console.log("autoSaveAnswers fired and sent:", data);
         $http.post("/auth/user/autosave", data).then(function(response){
             console.log("response from autosave", response);
+            user.data = response.data;
         });
     };
 
     var autoSaveCurrentPage = function(data){
         console.log("autoSaveCurrentPage fired");
         $http.post("/auth/user/currentpage", data).then(function(response){
-            getUserData();
+            console.log("response from autoSaveCurrentPage", response);
+            user.data = response.data;
         });
     };
 
