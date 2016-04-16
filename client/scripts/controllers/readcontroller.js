@@ -51,7 +51,7 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         rsjService.user.data.currentpage++;
         $scope.setIndex();
         $scope.setAnswer1();
-        //rsjService.autoSaveCurrentPage(rsjService.user);
+        rsjService.autoSaveCurrentPage(rsjService.user);
     };
 
     $scope.pageBackward = function() {
@@ -59,7 +59,7 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         rsjService.user.data.currentpage--;
         $scope.setIndex();
         $scope.setAnswer1();
-        //rsjService.autoSaveCurrentPage(rsjService.user);
+        rsjService.autoSaveCurrentPage(rsjService.user);
     };
 
 
@@ -72,9 +72,9 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
 
 
 
-    //autosave stuff?
+    //autosave stuff
 
-    var secondsToWaitBeforeSave = 2;
+    var secondsToWaitBeforeSave = 1;
     var timeout = null;
     var saveUpdates = function() {
         if ($scope.answer1.answer) {
@@ -90,5 +90,22 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         }
     };
     $scope.$watch('answer1.answer', debounceUpdate);
+
+
+
+    //this is some hardcoded interactive support code
+    $scope.hits = [/blue/, /green/, /red/, /yellow/, /purple/, /brown/, /black/];
+    $scope.print = "a mystery";
+    $scope.firstMatch = function(inputString, queryArray, output) {
+        for (var i = 0; i < queryArray.length; i++ ) {
+            if (queryArray[i].exec(inputString) != null) {
+                output = (queryArray[i].exec(inputString))[0];
+            }
+        }
+        return output;
+    };
+
+
+
 
 }]);

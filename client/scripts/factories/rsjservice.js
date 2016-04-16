@@ -40,7 +40,6 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
         console.log("autoSaveCurrentPage fired");
         $http.post("/auth/user/currentpage", data).then(function(response){
             console.log("response from autoSaveCurrentPage", response);
-            user.data = response.data;
         });
     };
 
