@@ -105,7 +105,36 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         return output;
     };
 
+    $scope.toggle = {
+        a : {
+            hit: /blue/,
+            result: ["cobalt", "blueberry"]
+        },
+        b : {
+            hit: /green/,
+            result: ["jade", "dragonfly"]
+        },
+        c : {
+            hit: /red/,
+            result: ["crimson", "tomato"]
+            }
+    };
 
+
+    console.log($scope.toggle);
+    $scope.togglePrint = [
+        "golden", "popcorn cornel"
+    ]
+
+    $scope.toggleMatch = function(inputString, toggleObject, outputArray) {
+        for (var x in toggleObject) {
+            console.log(toggleObject[x]);
+            if (toggleObject[x].hit.exec(inputString) != null) {
+                outputArray = toggleObject[x].result;
+            }
+        }
+        return outputArray;
+    }
 
 
 }]);

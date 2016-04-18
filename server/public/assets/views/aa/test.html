@@ -8,10 +8,60 @@
             </p>
         </div>
 
+
+        <script type="text/javascript">
+            myApp.controller("testController", ["$scope", "$sce", "$http", "$location", "$route", "$routeParams", "$compile", "$timeout", "RSJService", function($scope, $sce, $http, $location, $route, $routeParams, $compile, $timeout, RSJService){
+                var rsjService = RSJService;
+                $scope.hits = [/blue/, /green/, /red/, /yellow/, /purple/, /brown/, /black/];
+                $scope.print = "a mystery";
+                $scope.firstMatch = function(inputString, queryArray, output) {
+                    for (var i = 0; i < queryArray.length; i++ ) {
+                        if (queryArray[i].exec(inputString) != null) {
+                            output = (queryArray[i].exec(inputString))[0];
+                        }
+                    }
+                    return output;
+                };
+
+                $scope.toggle = {
+                    a : {
+                        hit: /blue/,
+                        result: ["cobalt", "blueberry"]
+                    },
+                    b : {
+                        hit: /green/,
+                        result: ["jade", "dragonfly"]
+                    },
+                    c : {
+                        hit: /red/,
+                        result: ["crimson", "tomato"]
+                        }
+                };
+
+
+                console.log($scope.toggle);
+                $scope.togglePrint = [
+                    "golden", "popcorn cornel"
+                ]
+
+                $scope.toggleMatch = function(inputString, toggleObject, outputArray) {
+                    for (var x in toggleObject) {
+                        console.log(toggleObject[x]);
+                        if (toggleObject[x].hit.exec(inputString) != null) {
+                            outputArray = toggleObject[x].result;
+                        }
+                    }
+                    return outputArray;
+                }
+            }]);
+        </script>
+
         <!--this is what renders the body of the page  -->
-        <div ng-class="pageNow.style + '-body'">
+        <div ng-class="pageNow.style + '-body'" ng-controller="testController as test">
             <div dynamic="html"></div>
         </div>
+
+
 
         <!-- this is what renders the page number / footer  -->
         <div ng-class="pageNow.style + '-footer'" ng-hide="pageNow.style == 'five'">
