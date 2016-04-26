@@ -66,10 +66,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
-
-
-
 /** ---------- ROUTES ---------- **/
 
 app.use("/", index);
