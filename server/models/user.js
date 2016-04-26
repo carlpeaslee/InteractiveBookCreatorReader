@@ -32,7 +32,12 @@ UserSchema.pre("save", function(next){
     console.log("got into this save thing");
     var user = this;
     if(!user.isModified("password")) return next();
+    console.log("made it past user.isModified");
     bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
+        console.log("now we in the genSalt thing");
+        if (err) {
+            console.log(err);
+        }
         if(err) return next(err);
         bcrypt.hash(user.password, salt, function(err, hash){
             if(err) return next(err);
