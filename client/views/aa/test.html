@@ -1,25 +1,28 @@
-<div class="whole-page" md-swipe-left="pageForward()" md-swipe-right="pageBackward()">
-    <div class="paper">
+<div layout-gt-xs="row" layout-align-gt-xs="center center">
+    <div flex-gt-xs="40">
+        <div class="whole-page" md-swipe-left="pageForward()" md-swipe-right="pageBackward()">
+            <div class="paper">
+                <!-- this is what renders the header on the page -->
+                <div ng-class="pageNow.style + '-header'" ng-hide="pageNow.style == 'five'">
+                    <p>
+                        Carl's Test Book
+                    </p>
+                </div>
 
-        <!-- this is what renders the header on the page -->
-        <div ng-class="pageNow.style + '-header'" ng-hide="pageNow.style == 'five'">
-            <p>
-                Carl's Test Book
-            </p>
-        </div>
+                <!--this is what renders the body of the page  -->
+                <div ng-class="pageNow.style + '-body'">
+                    <div dynamic="html"></div>
+                </div>
 
-        <!--this is what renders the body of the page  -->
-        <div ng-class="pageNow.style + '-body'" ng-controller="testController as test">
-            <div dynamic="html"></div>
+                <!-- this is what renders the page number / footer  -->
+                <div ng-class="pageNow.style + '-footer'" ng-hide="pageNow.style == 'five'">
+                    {{pageNow.displaypage}}
+                </div>
+            </div>
+            <div class="backwardsButton" ng-click="pageBackward()">
+            </div>
+            <div class="forwardsButton" ng-click="pageForward()">
+            </div>
         </div>
-
-        <!-- this is what renders the page number / footer  -->
-        <div ng-class="pageNow.style + '-footer'" ng-hide="pageNow.style == 'five'">
-            {{pageNow.displaypage}}
-        </div>
-    </div>
-    <div class="backwardsButton" ng-click="pageBackward()">
-    </div>
-    <div class="forwardsButton" ng-click="pageForward()">
     </div>
 </div>
