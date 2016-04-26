@@ -29,6 +29,7 @@ var UserSchema = new Schema({
 
 
 UserSchema.pre("save", function(next){
+    console.log("got into this save thing");
     var user = this;
     if(!user.isModified("password")) return next();
     bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
