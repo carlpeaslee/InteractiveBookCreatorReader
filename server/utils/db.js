@@ -1,6 +1,10 @@
 var mongoose = require("mongoose");
 
-var mongoURI = "mongodb://localhost/rsjtest001";
+var mongoURI =
+   process.env.MONGOLAB_URI ||
+   process.env.MONGOHQ_URL ||
+   'mongodb://localhost/rsjtest001';
+
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 
