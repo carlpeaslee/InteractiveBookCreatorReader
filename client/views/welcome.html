@@ -1,0 +1,19 @@
+<md-dialog ng-controller="LoginController" class="login-box">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Welcome!</h2>
+        </div>
+    </md-toolbar>
+        <md-dialog-content>
+            <br>
+            <div layout="column" layout-margin>
+                <p>Plot.cool is a free platform for content creators and readers to develop and share interactive written content.</p>
+                <p>Advertisers have been generating dynamic, interactive, and user-specific ads for years. Why shouldn't educators, journalists, and artists be able to, as well?</p>
+                <p>This site was created by <a href="http://linkedin.com/in/peaslee">Carl Peaslee</a>. Checkout my <a href="http://github.com/carlpeaslee">github</a> page if you'd like to know more about the process or the page.</p>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="space-around">
+            <md-button class="md-raised" ng-click="backToLogin(ev)">Login</md-button>
+            <md-button class="md-raised" ng-click="goToCreateUser(ev)">New User</md-button>
+        </md-dialog-actions>
+</md-dialog>

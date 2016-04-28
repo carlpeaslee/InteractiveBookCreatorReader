@@ -13,7 +13,7 @@ router.use("/admin", admin);
 router.get("/data", function(req,res,next){
     console.log("user data requested", req.isAuthenticated());
     var respData = {
-        username: req.user.username,
+        email: req.user.email,
         fname: req.user.fname,
         lname: req.user.lname,
         datecreated: req.user.datecreated,
@@ -34,7 +34,7 @@ router.get("/data", function(req,res,next){
 router.post("/data", function(req,res,next){
     console.log("user data post triggered", req.isAuthenticated());
     User.findOneAndUpdate({ _id: req.user._id }, {
-        username: req.body.data.username,
+        email: req.body.data.email,
         fname: req.body.data.fname,
         lname: req.body.data.lname,
         phone: parseInt(req.body.data.phone),

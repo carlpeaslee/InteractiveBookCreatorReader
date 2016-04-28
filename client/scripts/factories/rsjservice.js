@@ -1,4 +1,4 @@
-myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, $mdDialog, $location){
+myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", function($http, $mdDialog, $mdToast, $location){
 
     var user = {};
     var pages = {};
@@ -58,7 +58,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
             if(response.data !== true){
                 console.log("NOT LOGGED IN!");
                 user.isLoggedIn = false;
-                showLoginDialog();
+                showWelcomeDialog();
             } else {
                 console.log("LOGGED IN! ", response.data);
                 user.isLoggedIn = true;
@@ -71,6 +71,15 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
         });
     };
 
+    var showWelcomeDialog = function(ev) {
+        $mdDialog.show({
+          templateUrl: 'assets/views/welcome.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+    };
+
     var showLoginDialog = function(ev) {
         $mdDialog.show({
           templateUrl: 'assets/views/login.html',
@@ -80,9 +89,18 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
         });
     };
 
+    var loginAlert = {};
+
     var login = function(data) {
-        console.log("login fired");
+        console.log("login fired", data);
         $http.post("/login", data).then(function(response){
+            console.log(response);
+            if (response.data[0] == "password") {
+                loginAlert.password = true;
+            }
+            if (response.data[0] == "email") {
+                loginAlert.email = true;
+            }
             loginStatus();
         });
     };
@@ -90,8 +108,35 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
     var createUser = function(data) {
         console.log("createUser fired");
         $http.post("/register", data).then(function(response){
+            if (response.data == true) {
+                createUserToast();
+                setTimeout(login(user.data),1000);
+            }
+            else {
+                console.log(response);
+            }
         });
     };
+
+    var createUserToast = function($event) {
+        $mdToast.show($mdToast.simple()
+            .textContent("User Created. Now logging in...")
+            .position('bottom')
+            .parent(angular.element(document.getElementsByClassName('login-box')))
+        );
+    };
+
+    var backToLogin = function(ev){
+        $mdDialog.hide();
+        $mdDialog.show({
+          templateUrl: 'assets/views/login.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:false
+        });
+    };
+
+
 
     return {
         loginStatus: loginStatus,
@@ -105,6 +150,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$location", function($http, 
         site: site,
         getQuestions: getQuestions,
         autoSaveAnswers: autoSaveAnswers,
-        autoSaveCurrentPage: autoSaveCurrentPage
+        autoSaveCurrentPage: autoSaveCurrentPage,
+        loginAlert: loginAlert
     };
 }]);

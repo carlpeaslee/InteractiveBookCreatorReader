@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+var flash    = require('connect-flash');
 var session = require("express-session");
 var localStrategy = require('passport-local');
 var path = require("path");
@@ -11,9 +12,17 @@ var user = require('./user');
 router.use("/register", register);
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/"
+    failureRedirect: '/loginfail',
+    successRedirect: '/login',
+    successFlash: true,
+    failureFlash: true
 }));
+
+
+
+router.get("/loginfail", function(req,res,next){
+    res.send(req.flash('loginMessage'));
+});
 
 router.get("/login", function(req,res,next){
     res.json(req.isAuthenticated());

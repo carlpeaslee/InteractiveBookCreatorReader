@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 
 var passport = require('passport');
+var flash    = require('connect-flash');
 var session = require("express-session");
 var localStrategy = require('passport-local');
 
@@ -16,6 +17,21 @@ var register = require('./routes/register');
 var user = require('./routes/user');
 
 var db = require("./utils/db.js");
+
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(session({
+    secret: "secret",
+    key: "user",
+    resave: true,
+    s: false,
+    cookie: {maxAge: null, secure: false}
+}));
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 
 /** ---------- Configuring passport ---------- **/
@@ -32,38 +48,25 @@ passport.deserializeUser(function(id, done){
 
 passport.use("local", new localStrategy({
     passReqToCallback : true,
-    usernameField: 'username'
-    }, function(req, username, password, done){
-    User.findOne({username: username}, function(err,user){
+    usernameField: 'email'
+}, function(req, email, password, done){
+    User.findOne({email: email}, function(err,user){
         if(err) throw err;
         if(!user){
-            return done(null, false, {message: "Incorrect username or password"});
+            return done(null, false, req.flash('loginMessage', "email"));
         }
         user.comparePassword(password, function(err, isMatch){
             if(err) throw err;
             if(isMatch){
                 return done(null, user);
             } else {
-                done( null, false, {message: "Incorrect username or password"});
+                done( null, false, req.flash('loginMessage', "password"));
             }
         });
     });
 }
 ));
 
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(session({
-    secret: "secret",
-    key: "user",
-    resave: true,
-    s: false,
-    cookie: {maxAge: null, secure: false}
-}));
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 /** ---------- ROUTES ---------- **/

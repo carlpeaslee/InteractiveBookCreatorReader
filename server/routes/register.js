@@ -13,8 +13,9 @@ router.post("/", function(req, res, next){
     User.create(req.body, function(err,post){
         if(err){
           next(err);
+          res.send(err);
         } else {
-          res.redirect("/");
+          res.send(true);
         }
     });
 });

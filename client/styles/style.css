@@ -4,6 +4,10 @@ body {
     background-attachment: fixed;
 }
 
+.login-box {
+    width: 30%;
+}
+
 .tint {
     position: absolute;
     height: 100%;

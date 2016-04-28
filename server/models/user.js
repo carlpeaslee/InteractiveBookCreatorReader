@@ -10,7 +10,7 @@ var AnswerSchema = new Schema({
 });
 
 var UserSchema = new Schema({
-    username: { type : String , required : false, index: {unique: true}},
+    email: { type : String , required : true, index: {unique: true}},
     password: {type: String, required: true},
     fname: { type : String , required : false },
     lname: { type : String , required : false },
@@ -29,19 +29,11 @@ var UserSchema = new Schema({
 
 
 UserSchema.pre("save", function(next){
-    console.log("got into this save thing and here is 'this'", this);
     var user = this;
-    console.log("user");
     if(!user.isModified("password")) return next();
-    console.log("made it past user.isModified");
     bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt){
-        console.log("now we in the genSalt thing");
-        if (err) {
-            console.log(err);
-        }
         if(err) return next(err);
         bcrypt.hash(user.password, salt, function(err, hash){
-            console.log("now in the hash machine");
             if(err) return next(err);
             user.password = hash;
             next();
