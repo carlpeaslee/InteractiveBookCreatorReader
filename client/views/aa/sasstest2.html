@@ -1,0 +1,23 @@
+<div class="newpaper">
+    <!-- this is what renders the header on the page -->
+    <div ng-class="'header'">
+        <h3>
+            Carl's Test Book
+        </h3>
+    </div>
+
+    <!--this is what renders the body of the page  -->
+    <div ng-class="'body'">
+        <div dynamic="html"></div>
+    </div>
+
+    <!-- this is what renders the page number / footer  -->
+    <div ng-class="'footer'">
+        <h3>{{pageNow.displaypage}}</h3>
+    </div>
+    <!-- page controlls -->
+    <div class="backwardsButton" ng-click="pageBackward()">
+    </div>
+    <div class="forwardsButton" ng-click="pageForward()">
+    </div>
+</div>

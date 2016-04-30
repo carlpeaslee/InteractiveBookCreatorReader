@@ -27,16 +27,16 @@ myApp.config(['$mdThemingProvider', function($mdThemingProvider){
 
 myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
     $routeProvider.
-    when("/admin", {
+    when("/create", {
         templateUrl: "/assets/views/admin/main.html",
         controller: "AdminController"
     }).
-    when("/readon", {
-        templateUrl: "/assets/views/readon.html",
-        controller: "ReadController"
-    }).
     when("/read", {
         templateUrl: "/assets/views/aa/test.html",
+        controller: "ReadController"
+    }).
+    when("/sass", {
+        templateUrl: "/assets/views/aa/sasstest2.html",
         controller: "ReadController"
     }).
     when("/library", {

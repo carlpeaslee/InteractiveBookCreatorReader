@@ -1,37 +1,37 @@
-<md-dialog ng-controller="LoginController" class="login-box">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Login</h2>
-        </div>
-    </md-toolbar>
-    <form name="loginForm" ng-submit="login(user.data)" >
-        <md-dialog-content>
-            <br>
-            <div layout="column" layout-margin>
-                <md-input-container class="md-block">
-                    <label>Email</label>
-                    <input name="email" ng-model="user.data.email" ng-pattern="/^.+@.+\..+$/" required>
-                    <div ng-messages="loginForm.email.$error">
-                        <div ng-message="required">This is required.</div>
-                        <div ng-message="pattern">Please enter a valid email. </div>
-                        <div ng-if="loginAlert.email" class="md-caption">Email not recognized.</div>
-                    </div>
-
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>Password</label>
-                    <input name="password" type="password" ng-model="user.data.password" ng-minlength="6" required>
-                    <div ng-messages="loginForm.password.$error">
-                        <div ng-message="required">This is required.</div>
-                        <div ng-message="md-minlength">Six characters please.</div>
-                        <div ng-if="loginAlert.password" class="md-caption">Password not recognized.</div>
-                    </div>
-                </md-input-container>
+    <md-dialog ng-controller="LoginController" class="login-box">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Login</h2>
             </div>
-        </md-dialog-content>
-        <md-dialog-actions layout="row" layout-align="space-around">
-            <md-button class="md-primary md-raised" ng-disabled="!loginForm.$valid" type="submit">Login</md-button>
-            <md-button class="md-raised" ng-click="goToCreateUser(ev)">New User</md-button>
-        </md-dialog-actions>
-    </form>
-</md-dialog>
+        </md-toolbar>
+        <form name="loginForm" ng-submit="login(user.data)" >
+            <md-dialog-content>
+                <br>
+                <div layout="column" layout-margin>
+                    <md-input-container class="md-block">
+                        <label>Email</label>
+                        <input name="email" ng-model="user.data.email" ng-pattern="/^.+@.+\..+$/" required>
+                        <div ng-messages="loginForm.email.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="pattern">Please enter a valid email. </div>
+                            <div ng-if="loginAlert.email" class="md-caption">Email not recognized.</div>
+                        </div>
+
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Password</label>
+                        <input name="password" type="password" ng-model="user.data.password" ng-minlength="6" required>
+                        <div ng-messages="loginForm.password.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-minlength">Six characters please.</div>
+                            <div ng-if="loginAlert.password" class="md-caption">Password not recognized.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </md-dialog-content>
+            <md-dialog-actions layout="row" layout-align="space-around">
+                <md-button class="md-primary md-raised" ng-disabled="!loginForm.$valid" type="submit">Login</md-button>
+                <md-button class="md-raised" ng-click="goToCreateUser(ev)">New User</md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>

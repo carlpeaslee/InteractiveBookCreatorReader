@@ -1,0 +1,155 @@
+
+
+@mixin page($paper-width) {
+    $paper-height: (4/3)*$paper-width;
+
+    $p-font: "EB Garamond";
+    $p-size: (1/24)*$paper-width;
+    $p-line-height: (1/18)*$paper-width;
+    $h-font: "Futura";
+    $h-size: (1/36)*$paper-width;
+    $accent-font: "Inconsolata";
+    $accent-size: (1/36)*$paper-width;
+    .newpaper {
+        height: $paper-height;
+        width: $paper-width;
+        background-color: snow;
+        .header {
+            box-sizing: border-box;
+            height: (1/12)*$paper-height;
+            padding-top: (1/24)*$paper-height;
+            padding-bottom: (1/48);
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .body {
+            box-sizing: border-box;
+            height: (5/6)*$paper-height;
+            width: (3/4)*$paper-width;
+            overflow: hidden;
+            margin-left: (1/8)*$paper-width;
+            margin-right: (1/8)*$paper-width;
+        }
+        .footer {
+            box-sizing: border-box;
+            height: (1/12)*$paper-height;
+            padding-top: (1/24)*$paper-height;
+            padding-bottom: (1/24)*$paper-height;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p {
+            margin-bottom: 0;
+            margin-top: 0;
+            font-size: $p-size;
+            line-height: $p-line-height;
+            text-align: justify;
+            text-indent: (2)*$p-size;
+            font-family: $p-font;
+            .no-indent {
+                text-indent: 0;
+            }
+        }
+        //big title or section header
+        h1 {
+            font-style: $accent-font;
+            font-size: (3)*$accent-size;
+            margin: 0;
+        }
+        //chapter headings
+        h2 {
+            font-style: $h-font;
+            font-size: (2)*$h-size;
+            font-weight: normal;
+            margin: 0;
+        }
+        //page footers and headers
+        h3 {
+            font-style: $h-font;
+            font-size: $h-size;
+            font-weight: strong;
+            margin: 0;
+            line-height: 0;
+            color: darkgrey;
+            text-transform: uppercase;
+        }
+        //form headers
+        h4 {
+            font-style: $accent-font;
+            font-size: $accent-size;
+            text-align: center;
+            margin: 0;
+        }
+        form {
+            box-sizing: border-box;
+            height: (5/12)*$paper-height;
+            width: 100%;
+            padding-top: (1/36)*$paper-height;
+            textarea {
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+                font-size: $p-size;
+                line-height: $p-line-height;
+                text-indent: (2)*$p-size;
+                font-family: $p-font;
+                padding: (1/48)*$paper-height;
+                background-color: transparent;
+                border: 0;
+            }
+        }
+    }
+}
+
+
+//ipad specific styling
+@media only screen
+and (device-width: 768px)
+and (device-height: 1024px)
+and (orientation:portrait) {
+
+    .login-box {
+        width: 50%;
+    }
+
+    .welcome-box {
+        width: 66%;
+    }
+
+    @include page(768px);
+
+    .newpaper {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+}
+
+//computer specific?
+@media screen
+and (min-device-width: 1025px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+
+    .login-box {
+        width: 20%;
+    }
+
+    .welcome-box {
+        width: 50%;
+    }
+
+
+    @include page(600px);
+
+    .newpaper {
+        position: relative;
+        margin-top: 0%;
+        margin-bottom: 5%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

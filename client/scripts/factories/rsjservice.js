@@ -101,7 +101,9 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
             if (response.data[0] == "email") {
                 loginAlert.email = true;
             }
-            loginStatus();
+            if (response.data==true){
+                loginStatus();
+            }
         });
     };
 

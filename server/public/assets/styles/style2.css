@@ -1,0 +1,178 @@
+@media only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .login-box {
+    width: 50%; }
+
+  .welcome-box {
+    width: 66%; }
+
+  .newpaper {
+    height: 1024px;
+    width: 768px;
+    background-color: snow; }
+    .newpaper .header {
+      box-sizing: border-box;
+      height: 85.33333px;
+      padding-top: 42.66667px;
+      padding-bottom: 0.02083;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto; }
+    .newpaper .body {
+      box-sizing: border-box;
+      height: 853.33333px;
+      width: 576px;
+      overflow: hidden;
+      margin-left: 96px;
+      margin-right: 96px; }
+    .newpaper .footer {
+      box-sizing: border-box;
+      height: 85.33333px;
+      padding-top: 42.66667px;
+      padding-bottom: 42.66667px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto; }
+    .newpaper p {
+      margin-bottom: 0;
+      margin-top: 0;
+      font-size: 32px;
+      line-height: 42.66667px;
+      text-align: justify;
+      text-indent: 64px;
+      font-family: "EB Garamond"; }
+      .newpaper p .no-indent {
+        text-indent: 0; }
+    .newpaper h1 {
+      font-style: "Inconsolata";
+      font-size: 64px;
+      margin: 0; }
+    .newpaper h2 {
+      font-style: "Futura";
+      font-size: 42.66667px;
+      font-weight: normal;
+      margin: 0; }
+    .newpaper h3 {
+      font-style: "Futura";
+      font-size: 21.33333px;
+      font-weight: strong;
+      margin: 0;
+      line-height: 0;
+      color: darkgrey;
+      text-transform: uppercase; }
+    .newpaper h4 {
+      font-style: "Inconsolata";
+      font-size: 21.33333px;
+      text-align: center;
+      margin: 0; }
+    .newpaper form {
+      box-sizing: border-box;
+      height: 426.66667px;
+      width: 100%;
+      padding-top: 28.44444px; }
+      .newpaper form textarea {
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        font-size: 32px;
+        line-height: 42.66667px;
+        text-indent: 64px;
+        font-family: "EB Garamond";
+        padding: 21.33333px;
+        background-color: transparent;
+        border: 0; }
+
+  .newpaper {
+    position: fixed;
+    top: 0;
+    left: 0; } }
+@media screen and (min-device-width: 1025px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+  .login-box {
+    width: 20%; }
+
+  .welcome-box {
+    width: 50%; }
+
+  .newpaper {
+    height: 800px;
+    width: 600px;
+    background-color: snow; }
+    .newpaper .header {
+      box-sizing: border-box;
+      height: 66.66667px;
+      padding-top: 33.33333px;
+      padding-bottom: 0.02083;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto; }
+    .newpaper .body {
+      box-sizing: border-box;
+      height: 666.66667px;
+      width: 450px;
+      overflow: hidden;
+      margin-left: 75px;
+      margin-right: 75px; }
+    .newpaper .footer {
+      box-sizing: border-box;
+      height: 66.66667px;
+      padding-top: 33.33333px;
+      padding-bottom: 33.33333px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto; }
+    .newpaper p {
+      margin-bottom: 0;
+      margin-top: 0;
+      font-size: 25px;
+      line-height: 33.33333px;
+      text-align: justify;
+      text-indent: 50px;
+      font-family: "EB Garamond"; }
+      .newpaper p .no-indent {
+        text-indent: 0; }
+    .newpaper h1 {
+      font-style: "Inconsolata";
+      font-size: 50px;
+      margin: 0; }
+    .newpaper h2 {
+      font-style: "Futura";
+      font-size: 33.33333px;
+      font-weight: normal;
+      margin: 0; }
+    .newpaper h3 {
+      font-style: "Futura";
+      font-size: 16.66667px;
+      font-weight: strong;
+      margin: 0;
+      line-height: 0;
+      color: darkgrey;
+      text-transform: uppercase; }
+    .newpaper h4 {
+      font-style: "Inconsolata";
+      font-size: 16.66667px;
+      text-align: center;
+      margin: 0; }
+    .newpaper form {
+      box-sizing: border-box;
+      height: 333.33333px;
+      width: 100%;
+      padding-top: 22.22222px; }
+      .newpaper form textarea {
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        font-size: 25px;
+        line-height: 33.33333px;
+        text-indent: 50px;
+        font-family: "EB Garamond";
+        padding: 16.66667px;
+        background-color: transparent;
+        border: 0; }
+
+  .newpaper {
+    position: relative;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto; } }
+
+/*# sourceMappingURL=style2.css.map */
