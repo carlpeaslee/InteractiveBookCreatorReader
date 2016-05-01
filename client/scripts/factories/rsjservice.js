@@ -65,7 +65,6 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
                 getUserData();
                 getPages();
                 getQuestions();
-                $location.path('/library');
                 $mdDialog.hide();
             };
         });
@@ -93,6 +92,26 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
 
     var login = function(data) {
         console.log("login fired", data);
+        $http.post("/login", data).then(function(response){
+            console.log(response);
+            if (response.data[0] == "password") {
+                loginAlert.password = true;
+            }
+            if (response.data[0] == "email") {
+                loginAlert.email = true;
+            }
+            if (response.data==true){
+                loginStatus();
+            }
+        });
+    };
+
+    var autoTestLogin = function() {
+        var data= {
+            email: "cpeaslee@gmail.com",
+            password: "asdfasdf"
+        };
+        console.log("admin cheat login fired", data);
         $http.post("/login", data).then(function(response){
             console.log(response);
             if (response.data[0] == "password") {
@@ -153,6 +172,7 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
         getQuestions: getQuestions,
         autoSaveAnswers: autoSaveAnswers,
         autoSaveCurrentPage: autoSaveCurrentPage,
-        loginAlert: loginAlert
+        loginAlert: loginAlert,
+        autoTestLogin: autoTestLogin
     };
 }]);

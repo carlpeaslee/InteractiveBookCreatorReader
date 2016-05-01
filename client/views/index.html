@@ -24,14 +24,13 @@
     <script type="text/javascript" src="/assets/vendors/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/assets/scripts/app.min.js"></script>
 
-    <!-- <base href="/"> -->
+    <base href="/">
     <link rel="apple-touch-icon" sizes="120x120" href="/assets/views/imgs/apple-icon-120x120.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/views/imgs/favicon.ico">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 </head>
 <body ng-controller="UserController">
-    <div class="tint"></div>
     <ng-include ng-show="user.isLoggedIn" src="'/assets/views/partials/nav.html'"></ng-include>
 
     <main ng-show="user.isLoggedIn" ng-view>

@@ -31,9 +31,19 @@ router.get("/login", function(req,res,next){
 
 router.use('/auth/user', user);
 
-router.get("/*", function(req,res,next){
-    var file = req.params[0] || "/assets/views/index.html";
-    res.sendFile(path.join(__dirname, "../public", file));
-});
+
+// router.get("/*", function(req,res,next){
+//     console.log(req.params);
+//     var file = req.params[0] || "/assets/views/index.html";
+//     res.sendFile(path.join(__dirname, "../public", file));
+// });
+
+router.get('/', function(request, response){
+  response.sendFile(path.join(__dirname, '../public/assets/views/index.html'));
+})
+
+router.get('/*', function(request, response){
+  response.sendFile(path.join(__dirname, '../public/assets/views/index.html'));
+})
 
 module.exports = router;

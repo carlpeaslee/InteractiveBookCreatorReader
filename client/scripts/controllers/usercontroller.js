@@ -3,7 +3,14 @@ myApp.controller('UserController', ["$scope", "$http", "$location", "$mdDialog",
     $scope.login = rsjService.login;
     $scope.createUser = rsjService.createUser;
     $scope.user = rsjService.user;
-    rsjService.loginStatus();
+
+    //for testing purposes, disable 1, and enable 2
+
+    //1
+    //rsjService.loginStatus();
+
+    //2
+    rsjService.autoTestLogin();
 
     $scope.goToCreateUser = function(){
         $mdDialog.hide();

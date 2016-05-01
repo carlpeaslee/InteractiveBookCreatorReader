@@ -71,6 +71,8 @@ passport.use("local", new localStrategy({
 
 /** ---------- ROUTES ---------- **/
 
+app.use(express.static('server/public'));
+
 app.use("/", index);
 
 app.set("port", (process.env.PORT || 5000));

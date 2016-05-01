@@ -27,6 +27,10 @@ myApp.config(['$mdThemingProvider', function($mdThemingProvider){
 
 myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
     $routeProvider.
+    when("/library", {
+        templateUrl: "/assets/views/library/library.html",
+        controller: "LibraryController"
+    }).
     when("/create", {
         templateUrl: "/assets/views/admin/main.html",
         controller: "AdminController"
@@ -35,13 +39,9 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
         templateUrl: "/assets/views/aa/test.html",
         controller: "ReadController"
     }).
-    when("/sass", {
+    when("/sass/:page", {
         templateUrl: "/assets/views/aa/sasstest2.html",
-        controller: "ReadController"
-    }).
-    when("/library", {
-        templateUrl: "/assets/views/library/library.html",
-        controller: "LibraryController"
+        controller: "NewRead"
     }).
     when("/journal", {
         templateUrl: "/assets/views/journal/journal.html",
@@ -56,8 +56,9 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
         controller: "ProfileController"
     }).
     otherwise({
-        redirectTo: '/'
+        redirectTo: '/library'
     });
 
-    //$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
+
 }]);
