@@ -3,7 +3,23 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
     var index = 0;
     var q = 0;
 
-    $scope.page = $routeParams.page;
+    index = $routeParams.page;
+
+
+    var getPages = function(){
+        console.log("getPages fired from the read controller");
+        $http.get("/auth/user/pages").then(function(response){
+            rsjService.pages.data = response.data;
+            console.log("from getPages in ctrl, rsjService.pages.data :", rsjService.pages.data);
+            $scope.pageNow = rsjService.pages.data[index];
+            $scope.html = rsjService.pages.data[index].content[0];
+
+            $scope.setIndex();
+            $scope.setAnswer1();
+        });
+    }
+
+    getPages();
 
 
     $scope.setIndex = function(){
@@ -16,8 +32,8 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
         }
     };
 
-    $scope.pageNow = rsjService.pages.data[index];
-    $scope.html = rsjService.pages.data[index].content[0];
+    //$scope.pageNow = rsjService.pages.data[index];
+    //$scope.html = rsjService.pages.data[index].content[0];
 
 
     $scope.answer1 = {
@@ -25,7 +41,6 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
         answer : "",
         _id : ""
     };
-    console.log($scope.answer1);
 
     $scope.setAnswer1 = function() {
         if (rsjService.pages.data[index].question1[0]){
@@ -38,17 +53,17 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
             }
             $scope.answer1.prompt = rsjService.pages.data[index].question1[0].prompt;
             $scope.answer1._id = rsjService.pages.data[index].question1[0]._id;
-            console.log($scope.answer1);
+            //console.log($scope.answer1);
         } else {
             $scope.answer1.answer = "";
             $scope.answer1.prompt = "";
             $scope.answer1._id = "";
-            console.log($scope.answer1);
+            //console.log($scope.answer1);
         }
     };
 
-    $scope.setIndex();
-    $scope.setAnswer1();
+    // $scope.setIndex();
+    // $scope.setAnswer1();
 
     $scope.pageForward = function() {
         console.log("pageForward fired");
@@ -56,6 +71,7 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
         $scope.setIndex();
         $scope.setAnswer1();
         rsjService.autoSaveCurrentPage(rsjService.user);
+        $route.updateParams({page: index});
     };
 
     $scope.pageBackward = function() {
@@ -64,6 +80,7 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
         $scope.setIndex();
         $scope.setAnswer1();
         rsjService.autoSaveCurrentPage(rsjService.user);
+        $route.updateParams({page: index});
     };
 
 
@@ -125,14 +142,14 @@ myApp.controller("NewRead", ["$scope", "$sce", "$http", "$location", "$route", "
     };
 
 
-    console.log($scope.toggle);
+    //console.log($scope.toggle);
     $scope.togglePrint = [
         "golden", "popcorn cornel"
     ]
 
     $scope.toggleMatch = function(inputString, toggleObject, outputArray) {
         for (var x in toggleObject) {
-            console.log(toggleObject[x]);
+            // console.log(toggleObject[x]);
             if (toggleObject[x].hit.exec(inputString) != null) {
                 outputArray = toggleObject[x].result;
             }

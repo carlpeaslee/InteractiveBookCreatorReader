@@ -12,6 +12,8 @@ myApp.controller("ReadController", ["$scope", "$sce", "$http", "$location", "$ro
         }
     };
 
+
+
     $scope.pageNow = rsjService.pages.data[index];
     $scope.html = rsjService.pages.data[index].content[0];
 
