@@ -4,67 +4,119 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
     var pages = {};
     var site = {};
 
-    var getPages = function(){
+    var initialPageGet = function(){
         console.log("getPages fired");
-        $http.get("/auth/user/pages").then(function(response){
-            pages.data = response.data;
-            console.log("rsjService.pages.data :", pages.data);
-        });
+        if (!pages.data){
+            $http.get("/auth/user/pages")
+                .then(function(response){
+                    pages.data = response.data;
+                    console.log("rsjService.pages.data :", pages.data);
+                });
+        }
     };
 
-    var getUserData = function(){
-        console.log("getUserData fired");
-        $http.get("/auth/user/data").then(function(response){
+    var refreshPages = function(){
+        console.log("refreshPages fired");
+        return $http.get("/auth/user/pages")
+            .then(function(response){
+                pages.data = response.data;
+                console.log("rsjService.pages.data :", pages.data);
+                return pages.data;
+            });
+    };
+
+    var refreshUserData = function(){
+        console.log("refreshUserData fired");
+        return $http.get("/auth/user/data").then(function(response){
             user.data = response.data;
             console.log("rsjService.user.data :", user.data);
+            return user.data;
         });
     };
 
+    var initialUserData = function(){
+        console.log("initialUserData fired");
+        if (!pages.data){
+            $http.get("/auth/user/data").then(function(response){
+            user.data = response.data;
+            console.log("rsjService.user.data :", user.data);
+            });
+        }
+    };
 
     var postUserData = function(data){
         console.log("postUserData fired and sent:", data);
-        $http.post("/auth/user/data", data).then(function(response){
-            getUserData();
+        return $http.post("/auth/user/data", data)
+            .then(function(response){
+                user.data = response.data;
+                console.log("postUserData: rsjService.user.data was refreshed:", user.data);
+                return user.data;
         });
     };
 
     var autoSaveAnswers = function(data){
         console.log("autoSaveAnswers fired and sent:", data);
-        $http.post("/auth/user/autosave", data).then(function(response){
-            console.log("response from autosave", response);
-            user.data = response.data;
+        return $http.post("/auth/user/autosave", data)
+            .then(function(response){
+                user.data = response.data;
+                console.log("autoSaveAnswers: jService.user.data was refreshed:", user.data);
+                return user.data;
         });
     };
+
+    var saveNewQuestion = function(data){
+        console.log("saveNewQuestion fired and sent:", data);
+        return $http.post("/auth/user/newquestion", data)
+            .then(function(response){
+                user.data = response.data;
+                console.log("saveNewQuestion: rsjService.user.data was refreshed:", user.data);
+                return user.data;
+        });
+    };
+
+    var saveNewBook = function(data){
+        console.log("saveNewBook fired and sent:", data);
+        return $http.post("/auth/user/newbook", data)
+            .then(function(response){
+                user.data = response.data;
+                console.log("saveNewBook: rsjService.user.data was refreshed:", user.data);
+                return user.data;
+        });
+    };
+
+    var saveNewPage = function(data){
+        console.log("saveNewPage fired and sent:", data);
+        return $http.post("/auth/user/newpage", data)
+            .then(function(response){
+                user.data = response.data;
+                console.log("saveNewPage: rsjService.user.data was refreshed:", user.data);
+                return user.data;
+        });
+    };
+
 
     var autoSaveCurrentPage = function(data){
         console.log("autoSaveCurrentPage fired");
-        $http.post("/auth/user/currentpage", data).then(function(response){
-            console.log("response from autoSaveCurrentPage", response);
-        });
-    };
-
-
-    var getQuestions = function(){
-        console.log("getQuestions fired");
-        $http.get("/auth/user/admin/questions").then(function(response){
-            site.allQuestions = response.data;
-            console.log("rsjService.site.allQuestions was set to", site.allQuestions);
+        return $http.post("/auth/user/currentpage", data)
+            .then(function(response){
+                user.data = response.data;
+                console.log("autoSaveCurrentPage: jService.user.data was refreshed:", user.data);
+                return user.data;
         });
     };
 
     var loginStatus =  function() {
         console.log("checking user login status");
         $http.get("/login").then(function(response){
-            if(response.data !== true){
+            if(!response.data._id){
                 console.log("NOT LOGGED IN!");
                 user.isLoggedIn = false;
                 showWelcomeDialog();
             } else {
                 console.log("LOGGED IN! ", response.data);
                 user.isLoggedIn = true;
-                getUserData();
-                getPages();
-                getQuestions();
+                user.data = response.data;
+                initialPageGet();
                 $mdDialog.hide();
             };
         });
@@ -100,8 +152,13 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
             if (response.data[0] == "email") {
                 loginAlert.email = true;
             }
-            if (response.data==true){
-                loginStatus();
+            if (response.data._id){
+                console.log("logged in");
+                user.isLoggedIn = true;
+                user.data = response.data;
+                $location.path('/library')
+                initialPageGet();
+                $mdDialog.hide();
             }
         });
     };
@@ -113,15 +170,13 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
         };
         console.log("admin cheat login fired", data);
         $http.post("/login", data).then(function(response){
-            console.log(response);
-            if (response.data[0] == "password") {
-                loginAlert.password = true;
-            }
-            if (response.data[0] == "email") {
-                loginAlert.email = true;
-            }
-            if (response.data==true){
-                loginStatus();
+            if (response.data._id){
+                console.log("logged in");
+                user.isLoggedIn = true;
+                user.data = response.data;
+                $location.path('/library')
+                initialPageGet();
+                $mdDialog.hide();
             }
         });
     };
@@ -129,12 +184,14 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
     var createUser = function(data) {
         console.log("createUser fired");
         $http.post("/register", data).then(function(response){
-            if (response.data == true) {
+            if (response.data._id) {
+                console.log("user was created");
                 createUserToast();
-                setTimeout(login(user.data),1000);
+                setTimeout(login(response.config.data),1000);
             }
             else {
-                console.log(response);
+
+                console.log("no user?", response);
             }
         });
     };
@@ -160,19 +217,23 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
 
 
     return {
+        initialPageGet: initialPageGet,
+        refreshPages: refreshPages,
+        initialUserData: initialUserData,
+        refreshUserData: refreshUserData,
         loginStatus: loginStatus,
         login: login,
         createUser: createUser,
         postUserData: postUserData,
-        getUserData: getUserData,
-        getPages: getPages,
         user: user,
         pages: pages,
         site: site,
-        getQuestions: getQuestions,
         autoSaveAnswers: autoSaveAnswers,
         autoSaveCurrentPage: autoSaveCurrentPage,
         loginAlert: loginAlert,
-        autoTestLogin: autoTestLogin
+        autoTestLogin: autoTestLogin,
+        saveNewQuestion: saveNewQuestion,
+        saveNewBook: saveNewBook,
+        saveNewPage: saveNewPage
     };
 }]);

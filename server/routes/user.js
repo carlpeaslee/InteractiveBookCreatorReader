@@ -12,22 +12,8 @@ router.use("/admin", admin);
 
 router.get("/data", function(req,res,next){
     console.log("user data requested", req.isAuthenticated());
-    var respData = {
-        email: req.user.email,
-        fname: req.user.fname,
-        lname: req.user.lname,
-        datecreated: req.user.datecreated,
-        phone: req.user.phone,
-        address: req.user.address,
-        address2: req.user.address2,
-        city: req.user.city,
-        state: req.user.state,
-        zipcode: req.user.zipcode,
-        currentbook: req.user.currentbook,
-        currentpage: req.user.currentpage,
-        _id: req.user._id,
-        answers: req.user.answers
-    };
+    var respData = req.user;
+    respData.password = null;
     res.json(respData);
 });
 
@@ -80,6 +66,58 @@ router.post("/autosave", function(req,res,next){
         else {
             exists.answer = req.body.answer;
         }
+        found.save();
+        res.json(found);
+    });
+});
+
+router.post("/newquestion", function(req,res,next){
+    console.log("hit newquestion, req.user._id: ", req.user._id);
+    var newQuestion = {
+            prompt: req.body.prompt,
+            style: req.body.style,
+            options: req.body.options,
+            notes: req.body.notes
+    };
+    User.findById(req.user._id, function(err, found){
+        var exists = found.questions.id(req.body._id);
+        if (exists == null) {
+            found.questions.push(newQuestion);
+        }
+        found.save();
+        res.json(found);
+    });
+});
+
+router.post("/newbook", function(req,res,next){
+    console.log("hit newbook, req.user._id: ", req.user._id);
+    var newBook = {
+            title: req.body.title
+    };
+    User.findById(req.user._id, function(err, found){
+        var exists = found.books.id(req.body._id);
+        if (exists == null) {
+            found.books.push(newBook);
+        }
+        found.save();
+        res.json(found);
+    });
+});
+
+router.post("/newpage", function(req,res,next){
+    console.log("hit newpage, req.user._id: ", req.user._id);
+    var newPage = {
+        book: req.body.book,
+        style: req.body.style,
+        index: req.body.index,
+        displaypage: req.body.displaypage,
+        content: req.body.content,
+        questions: req.body.questions,
+        notes: req.body.notes
+    };
+    User.findById(req.user._id, function(err, found){
+        var intendedBook = found.books.id(req.body.book);
+        intendedBook.pages.push(newPage);
         found.save();
         res.json(found);
     });

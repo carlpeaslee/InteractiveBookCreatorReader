@@ -25,7 +25,32 @@ router.get("/loginfail", function(req,res,next){
 });
 
 router.get("/login", function(req,res,next){
-    res.json(req.isAuthenticated());
+    if (req.isAuthenticated()==true){
+        respData = {
+            email: req.user.email,
+            _id: req.user._id,
+            fname: req.user.fname,
+            lname: req.user.lname,
+            datecreated: req.user.datecreated,
+            lastlogin: req.user.lastlogin,
+            phone: req.user.phone,
+            address: req.user.address,
+            address2: req.user.address2,
+            city: req.user.city,
+            state: req.user.state,
+            zipcode: req.user.zipcode,
+            currentbook: req.user.currentbook,
+            currentpage: req.user.currentpage,
+            books: req.user.books,
+            answers: req.user.answers,
+            questions: req.user.questions
+        }
+        res.json(respData);
+    }
+    else {
+        res.send("error");
+    }
+
 });
 
 

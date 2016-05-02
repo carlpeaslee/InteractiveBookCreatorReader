@@ -2,7 +2,6 @@ myApp.controller("ProfileController", ["$scope", "RSJService", function($scope, 
     var rsjService = RSJService;
     $scope.user = rsjService.user;
 
-    rsjService.getUserData();
 
     $scope.updateUserProfile = function(data) {
         console.log("updateUserProfile fired");

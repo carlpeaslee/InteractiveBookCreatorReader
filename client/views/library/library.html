@@ -1,139 +1,51 @@
 <div ng-cloak>
-<div layout="row" layout-align="center">
+    <div layout="row" layout-align="center">
         <div flex="90">
-  <md-content class="transparent">
-    <br>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>
-          <span>Library</span>
-        </h2>
-        <span flex></span>
-      </div>
-    </md-toolbar>
-    <br>
-    <div layout="row">
-        <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Test Title</span>
-                        <span class="md-subhead">Test Book</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-href="/read">Read</md-button>
-                </md-card-actions>
-            </md-card>
+            <md-content class="transparent">
+                <br>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>
+                            <span>Library</span>
+                        </h2>
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <br>
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Sass Test Book 2</span>
+                            <span class="md-subhead">Book 2</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ng-href="/sass/{{currentpage}}">Read</md-button>
+                    </md-card-actions>
+                </md-card>
+                <!-- user generated cards -->
+                <div ng-repeat="book in lib.user.data.books">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{book.title}}</span>
+                                <span class="md-subhead">A user book</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <div class="md-media-sm card-media"></div>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button ng-href="/{{book.title}}/{{currentpage}}">Read</md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-content>
         </div>
-        <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Sass Test Book 2</span>
-                        <span class="md-subhead">Book 2</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-href="/sass/{{currentpage}}">Read</md-button disabled>
-                </md-card-actions>
-            </md-card>
-        </div>
-
-        <!-- <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Gears of Steam</span>
-                        <span class="md-subhead">Book 3</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Buy</md-button disabled>
-                </md-card-actions>
-            </md-card>
-        </div> -->
+        <br>
+        <br>
     </div>
-    <!-- <div layout="row">
-        <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Title</span>
-                        <span class="md-subhead">Book 4.1</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Buy</md-button disabled>
-                </md-card-actions>
-            </md-card>
-        </div>
-        <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Title</span>
-                        <span class="md-subhead">Book 4.2</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Buy</md-button disabled>
-                </md-card-actions>
-            </md-card>
-        </div>
-        <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Title</span>
-                        <span class="md-subhead">Book 4.3</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Buy</md-button disabled>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </div>
-    <div layout="row" layout-align="center center">
-        <div flex="33">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Resolution</span>
-                        <span class="md-subhead">Book 5</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Buy</md-button disabled>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </div> -->
-  </md-content>
-  </div>
-  <br>
-  <br>
-</div>
 </div>

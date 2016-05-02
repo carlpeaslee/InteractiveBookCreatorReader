@@ -1,18 +1,19 @@
 myApp.controller('UserController', ["$scope", "$http", "$location", "$mdDialog", "$mdMedia", "$location", "RSJService", function($scope, $http, $location, $mdDialog, $mdMedia, $location, RSJService){
+    var u = this;
     var rsjService = RSJService;
-    $scope.login = rsjService.login;
-    $scope.createUser = rsjService.createUser;
-    $scope.user = rsjService.user;
+    u.login = rsjService.login;
+    u.createUser = rsjService.createUser;
+    u.user = rsjService.user;
 
     //for testing purposes, disable 1, and enable 2
 
     //1
-    //rsjService.loginStatus();
+    // rsjService.loginStatus();
 
     //2
     rsjService.autoTestLogin();
 
-    $scope.goToCreateUser = function(){
+    u.goToCreateUser = function(){
         $mdDialog.hide();
         $mdDialog.show({
               templateUrl: 'assets/views/newuser.html',
@@ -22,7 +23,7 @@ myApp.controller('UserController', ["$scope", "$http", "$location", "$mdDialog",
         });
     };
 
-    $scope.goToLogin = function(){
+    u.goToLogin = function(){
         $mdDialog.hide();
         rsjService.showLoginDialog();
     };

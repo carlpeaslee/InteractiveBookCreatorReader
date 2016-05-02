@@ -3,11 +3,33 @@ var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
 
+var QuestionSchema = new Schema({
+    prompt: { type : String , required : true },
+    style: { type : Array , required : true },
+    options: { type : Array , required : false },
+    notes: { type : String , required : false }
+});
 
 var AnswerSchema = new Schema({
+    q_id: { type : String , required : true },
     prompt: { type : String , required : false },
     answer: { type : String , required : false }
 });
+
+var PageSchema = new Schema({
+    book: { type : String , required : true },
+    style: { type : String , required : false },
+    index: { type : Number , required : false },
+    displaypage: { type : String , required : false },
+    content: { type : Array , required : false },
+    questions: { type : Array , required : false },
+    notes: { type : String , required : false }
+})
+
+var BookSchema = new Schema({
+    title: { type : String , required : true },
+    pages: [PageSchema]
+})
 
 var UserSchema = new Schema({
     email: { type : String , required : true, index: {unique: true}},
@@ -24,7 +46,9 @@ var UserSchema = new Schema({
     zipcode: { type : String, default : null, required : false },
     currentbook: { type : String , required : false },
     currentpage: { type : String, required : true, default: 0},
-    answers: [AnswerSchema]
+    books: [BookSchema],
+    answers: [AnswerSchema],
+    questions: [QuestionSchema]
 });
 
 

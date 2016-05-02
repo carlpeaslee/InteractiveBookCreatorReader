@@ -15,7 +15,7 @@ router.post("/", function(req, res, next){
           next(err);
           res.send(err);
         } else {
-          res.send(true);
+          res.send(post);
         }
     });
 });

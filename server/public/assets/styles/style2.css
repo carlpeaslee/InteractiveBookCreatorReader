@@ -85,7 +85,7 @@
     position: fixed;
     top: 0;
     left: 0; } }
-@media screen and (min-device-width: 1025px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+@media screen and (min-device-width: 1025px) {
   .login-box {
     width: 20%; }
 
@@ -173,6 +173,90 @@
     margin-top: 0%;
     margin-bottom: 5%;
     margin-left: auto;
-    margin-right: auto; } }
+    margin-right: auto; }
+
+  .create-preview {
+    background-color: black; }
+    .create-preview .newpaper {
+      height: 533.33333px;
+      width: 400px;
+      background-color: snow; }
+      .create-preview .newpaper .header {
+        box-sizing: border-box;
+        height: 44.44444px;
+        padding-top: 22.22222px;
+        padding-bottom: 0.02083;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto; }
+      .create-preview .newpaper .body {
+        box-sizing: border-box;
+        height: 444.44444px;
+        width: 300px;
+        overflow: hidden;
+        margin-left: 50px;
+        margin-right: 50px; }
+      .create-preview .newpaper .footer {
+        box-sizing: border-box;
+        height: 44.44444px;
+        padding-top: 22.22222px;
+        padding-bottom: 22.22222px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto; }
+      .create-preview .newpaper p {
+        margin-bottom: 0;
+        margin-top: 0;
+        font-size: 16.66667px;
+        line-height: 22.22222px;
+        text-align: justify;
+        text-indent: 33.33333px;
+        font-family: "EB Garamond"; }
+        .create-preview .newpaper p .no-indent {
+          text-indent: 0; }
+      .create-preview .newpaper h1 {
+        font-style: "Inconsolata";
+        font-size: 33.33333px;
+        margin: 0; }
+      .create-preview .newpaper h2 {
+        font-style: "Futura";
+        font-size: 22.22222px;
+        font-weight: normal;
+        margin: 0; }
+      .create-preview .newpaper h3 {
+        font-style: "Futura";
+        font-size: 11.11111px;
+        font-weight: strong;
+        margin: 0;
+        line-height: 0;
+        color: darkgrey;
+        text-transform: uppercase; }
+      .create-preview .newpaper h4 {
+        font-style: "Inconsolata";
+        font-size: 11.11111px;
+        text-align: center;
+        margin: 0; }
+      .create-preview .newpaper form {
+        box-sizing: border-box;
+        height: 222.22222px;
+        width: 100%;
+        padding-top: 14.81481px; }
+        .create-preview .newpaper form textarea {
+          box-sizing: border-box;
+          height: 100%;
+          width: 100%;
+          font-size: 16.66667px;
+          line-height: 22.22222px;
+          text-indent: 33.33333px;
+          font-family: "EB Garamond";
+          padding: 11.11111px;
+          background-color: transparent;
+          border: 0; }
+    .create-preview .newpaper {
+      position: relative;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      margin-left: auto;
+      margin-right: auto; } }
 
 /*# sourceMappingURL=style2.css.map */

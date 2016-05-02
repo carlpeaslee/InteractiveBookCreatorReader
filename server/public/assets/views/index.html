@@ -30,10 +30,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 </head>
-<body ng-controller="UserController">
-    <ng-include ng-show="user.isLoggedIn" src="'/assets/views/partials/nav.html'"></ng-include>
+<body ng-controller="UserController as u">
+    <ng-include ng-show="u.user.isLoggedIn" src="'/assets/views/partials/nav.html'"></ng-include>
 
-    <main ng-show="user.isLoggedIn" ng-view>
+    <main ng-show="u.user.isLoggedIn" ng-view>
     </main>
 
 

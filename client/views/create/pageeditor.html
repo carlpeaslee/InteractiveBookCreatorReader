@@ -1,0 +1,87 @@
+<div layout="row">
+    <div flex="50">
+        <md-content>
+            <form ng-submit="create.submitNewPage(create.newpage)">
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Book</label>
+                        <md-select ng-model="create.newpage.book" ng-repeat="book in create.user.data.books">
+                            <md-option value="{{book._id}}">{{book.title}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Style</label>
+                        <md-select ng-model="create.newpage.style">
+                            <md-option value="default">Default</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Index</label>
+                        <input type="number" ng-model="create.newpage.index">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Display Page</label>
+                        <input type="number" ng-model="create.newpage.displaypage">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <div flex="100">
+                        <h4>Add Question</h4>
+                        <br>
+                        <md-autocomplete md-selected-item="create.newpage.questions" md-search-text="whatText" md-items="question in create.user.data.questions" md-item-text="question.prompt">
+                            <span md-highlight-text="whatText">{{question.prompt}}</span>
+                        </md-autocomplete>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="100">
+                        <md-input-container class="md-block">
+                            <label>Text Content</label>
+                            <textarea ng-model="create.newpage.content" ng-change="html=create.newpage.content" rows="15">
+                            </textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="100">
+                        <md-input-container class="md-block">
+                            <label>Notes</label>
+                            <textarea ng-model="create.newpage.notes" rows="5">
+                            </textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row">
+                    <md-button type="submit">Save</md-button>
+                </div>
+            </form>
+        </md-content>
+    </div>
+    <div flex="50" class="create-preview">
+
+        <div class="newpaper">
+            <!-- this is what renders the header on the page -->
+            <div ng-class="'header'">
+                <h3>
+                    Test Header
+                </h3>
+            </div>
+
+            <!--this is what renders the body of the page  -->
+            <div ng-class="'body'">
+                <div dynamic="html"></div>
+            </div>
+
+            <!-- this is what renders the page number / footer  -->
+            <div ng-class="'footer'">
+                <h3>{{create.newpage.displaypage}}</h3>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

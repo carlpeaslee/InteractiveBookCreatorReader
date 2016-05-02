@@ -1,0 +1,31 @@
+<div ng-cloak>
+    <div layout="row" layout-align="center">
+        <div flex="100">
+            <md-content class="purple-border">
+                <br>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>
+                            <span>Create</span>
+                        </h2>
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <br>
+                <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+                    <md-tab label="Books"\>
+                        <ng-include src="'/assets/views/create/bookeditor.html'"></ng-include>
+                    </md-tab>
+                    <md-tab label="Questions">
+                        <ng-include src="'/assets/views/create/questioneditor.html'"></ng-include>
+                    </md-tab>
+                    <md-tab label="Pages">
+                        <ng-include src="'/assets/views/create/pageeditor.html'"></ng-include>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>

@@ -125,13 +125,15 @@ and (orientation:portrait) {
         top: 0;
         left: 0;
     }
+
+
+
+
 }
 
 //computer specific?
 @media screen
-and (min-device-width: 1025px)
-and (max-device-width: 1600px)
-and (-webkit-min-device-pixel-ratio: 1) {
+and (min-device-width: 1025px){
 
     .login-box {
         width: 20%;
@@ -151,5 +153,22 @@ and (-webkit-min-device-pixel-ratio: 1) {
         margin-left: auto;
         margin-right: auto;
     }
+
+
+    .create-preview {
+        background-color: black;
+        
+        @include page(400px);
+
+        .newpaper {
+            position: relative;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+
 
 }

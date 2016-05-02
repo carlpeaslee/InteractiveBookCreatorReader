@@ -1,0 +1,30 @@
+
+<md-content class="md-padding">
+    <div layout="row">
+        <div flex="20">
+            <md-list-item class="md-3-line" ng-repeat="book in create.user.data.books">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ book.title }}</h3>
+                    <h4>{{ book.pages.length }}</h4>
+                </div>
+            </md-list-item>
+        </div>
+        <div flex="50">
+            <!-- book editor -->
+            <form ng-submit="create.submitNewBook(create.newBook)">
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input ng-model="create.newBook.title">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <md-button type="submit">Save</md-button>
+                </div>
+            </form>
+        </div>
+        <div flex="100">
+            <!-- question preview -->
+        </div>
+    </div>
+</md-content>

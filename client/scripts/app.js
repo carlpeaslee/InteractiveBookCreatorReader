@@ -29,11 +29,17 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
     $routeProvider.
     when("/library", {
         templateUrl: "/assets/views/library/library.html",
-        controller: "LibraryController"
+        controller: "LibraryController",
+        controllerAs: "lib"
+    }).
+    when("/login", {
+        templateUrl: "/assets/views/library/library.html",
+        controller: "UserController"
     }).
     when("/create", {
-        templateUrl: "/assets/views/admin/main.html",
-        controller: "AdminController"
+        templateUrl: "/assets/views/create/createmain.html",
+        controller: "CreateController",
+        controllerAs: "create"
     }).
     when("/read", {
         templateUrl: "/assets/views/aa/test.html",
@@ -54,9 +60,6 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
     when("/profile", {
         templateUrl: "/assets/views/profile/profile.html",
         controller: "ProfileController"
-    }).
-    otherwise({
-        redirectTo: '/library'
     });
 
     $locationProvider.html5Mode(true);
