@@ -97,11 +97,9 @@ myApp.factory("RSJService", ["$http", "$mdDialog", "$mdToast", "$location", func
 
     var autoSaveCurrentPage = function(data){
         console.log("autoSaveCurrentPage fired");
-        return $http.post("/auth/user/currentpage", data)
+        $http.post("/auth/user/currentpage", data)
             .then(function(response){
-                user.data = response.data;
-                console.log("autoSaveCurrentPage: jService.user.data was refreshed:", user.data);
-                return user.data;
+                console.log("autoSaveCurrentPage responded");
         });
     };
 

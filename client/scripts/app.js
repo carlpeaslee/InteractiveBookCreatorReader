@@ -57,6 +57,11 @@ myApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $l
         templateUrl: "/assets/views/questions/questions.html",
         controller: "QuestionsController"
     }).
+    when("/:book/:page", {
+        templateUrl: "/assets/views/library/dynamicbook.html",
+        controller: "DynamicReadCtrl",
+        controllerAs: "dread"
+    }).
     when("/profile", {
         templateUrl: "/assets/views/profile/profile.html",
         controller: "ProfileController"

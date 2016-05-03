@@ -1,0 +1,29 @@
+<!-- <div class="route-tester" style="position: fixed; background-color:lime; height: 50px; width: auto; padding: 5%; z-index: 10; overflow: scroll;">
+    <p><b>dread.book:</b>{{dread.book}}</p>
+    <p><b>dread.pageDex:</b>{{dread.pageDex}}</p>
+    <p><b>dread.pageObject:</b>{{dread.pageObject}}</p>
+</div> -->
+
+<div class="newpaper">
+    <!-- this is what renders the header on the page -->
+    <div ng-class="'header'">
+        <h3>
+            Test Header
+        </h3>
+    </div>
+
+    <!--this is what renders the body of the page  -->
+    <div ng-class="'body'">
+        <div dynamic="dread.html"></div>
+    </div>
+
+    <!-- this is what renders the page number / footer  -->
+    <div ng-class="'footer'">
+        <h3>{{dread.pageObject.displaypage}}</h3>
+    </div>
+    <!-- page controlls -->
+    <div class="backwardsButton" ng-click="dread.pageBackward()">
+    </div>
+    <div class="forwardsButton" ng-click="dread.pageForward()">
+    </div>
+</div>

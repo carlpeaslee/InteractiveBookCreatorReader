@@ -19,7 +19,7 @@ var AnswerSchema = new Schema({
 var PageSchema = new Schema({
     book: { type : String , required : true },
     style: { type : String , required : false },
-    index: { type : Number , required : false },
+    pdex: { type : String , required : false },
     displaypage: { type : String , required : false },
     content: { type : Array , required : false },
     questions: { type : Array , required : false },
@@ -28,7 +28,8 @@ var PageSchema = new Schema({
 
 var BookSchema = new Schema({
     title: { type : String , required : true },
-    pages: [PageSchema]
+    pages: [PageSchema],
+    userpdex: { type : String, required : true, default: 0}
 })
 
 var UserSchema = new Schema({

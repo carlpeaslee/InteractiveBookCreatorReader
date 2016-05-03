@@ -12,36 +12,42 @@
                     </div>
                 </md-toolbar>
                 <br>
-                <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Sass Test Book 2</span>
-                            <span class="md-subhead">Book 2</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media"></div>
-                        </md-card-title-media>
-                    </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button ng-href="/sass/{{currentpage}}">Read</md-button>
-                    </md-card-actions>
-                </md-card>
-                <!-- user generated cards -->
-                <div ng-repeat="book in lib.user.data.books">
-                    <md-card>
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">{{book.title}}</span>
-                                <span class="md-subhead">A user book</span>
-                            </md-card-title-text>
-                            <md-card-title-media>
-                                <div class="md-media-sm card-media"></div>
-                            </md-card-title-media>
-                        </md-card-title>
-                        <md-card-actions layout="row" layout-align="end center">
-                            <md-button ng-href="/{{book.title}}/{{currentpage}}">Read</md-button>
-                        </md-card-actions>
-                    </md-card>
+                <div layout="row">
+                    <div flex="33">
+                        <md-card>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">Sass Test Book 2</span>
+                                    <span class="md-subhead">Book 2</span>
+                                </md-card-title-text>
+                                <md-card-title-media>
+                                    <div class="md-media-sm card-media"></div>
+                                </md-card-title-media>
+                            </md-card-title>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button ng-href="/sass/0">Read</md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </div>
+                    <!-- user generated cards -->
+                <div layout="row">
+                    <div ng-repeat="book in lib.user.data.books">
+                            <md-card flex="33">
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{book.title}}</span>
+                                        <span class="md-subhead">A user book</span>
+                                    </md-card-title-text>
+                                    <md-card-title-media>
+                                        <div class="md-media-sm card-media"></div>
+                                    </md-card-title-media>
+                                </md-card-title>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <md-button ng-href="/{{book.title}}/0">Read</md-button>
+                                </md-card-actions>
+                            </md-card>
+                    </div>
                 </div>
             </md-content>
         </div>

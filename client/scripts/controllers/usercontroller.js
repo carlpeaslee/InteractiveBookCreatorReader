@@ -8,10 +8,10 @@ myApp.controller('UserController', ["$scope", "$http", "$location", "$mdDialog",
     //for testing purposes, disable 1, and enable 2
 
     //1
-    // rsjService.loginStatus();
+    rsjService.loginStatus();
 
     //2
-    rsjService.autoTestLogin();
+    // rsjService.autoTestLogin();
 
     u.goToCreateUser = function(){
         $mdDialog.hide();

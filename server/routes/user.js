@@ -109,7 +109,7 @@ router.post("/newpage", function(req,res,next){
     var newPage = {
         book: req.body.book,
         style: req.body.style,
-        index: req.body.index,
+        pdex: req.body.pdex,
         displaypage: req.body.displaypage,
         content: req.body.content,
         questions: req.body.questions,
