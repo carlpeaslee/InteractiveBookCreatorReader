@@ -2,40 +2,65 @@ myApp.controller("DynamicReadCtrl", ["$scope", "$sce", "$http", "$location", "$r
     var rsjService = RSJService;
     var dread = this;
 
-    rsjService.user.data.currentpage = $routeParams.page;
-    rsjService.user.data.currentbook = $routeParams.book;
-
     var book = {};
     var pageDex;
     dread.pageObject = {};
 
-    var setBookObject = function() {
-        console.log("currentbook", rsjService.user.data.currentbook);
-        for (var i = 0; i < rsjService.user.data.books.length; i++) {
-            if (rsjService.user.data.books[i].title == rsjService.user.data.currentbook) {
-                book = rsjService.user.data.books[i];
-                console.log("book:", book);
+    rsjService.user.data.currentbook = $routeParams.book;
+
+    var setup = function() {
+
+
+        liblinkHandler();
+        setBookObject();
+        setPageDex();
+        setPageObject();
+    }
+
+
+
+    var liblinkHandler = function() {
+        if ($routeParams.page == "liblink") {
+            for (var i = 0; i < rsjService.user.data.allprogress.length; i++) {
+                if (rsjService.user.data.allprogress[i].linktitle == rsjService.user.data.currentbook) {
+                    rsjService.user.data.currentpage = rsjService.user.data.allprogress[i].pnumber;
+                    console.log("liblinkHandler set currentpage and routeParams.page to::", rsjService.user.data.currentpage);
+                    return;
+                }
             }
         }
     }
 
-    var setPageDex = function() {
-        console.log("currentpage", rsjService.user.data.currentpage);
-        for (var i = 0; i < book.pages.length; i++) {
-            console.log("page for loop comparing:", book.pages[i].displaypage, rsjService.user.data.currentpage)
-            if (book.pages[i].displaypage == rsjService.user.data.currentpage) {
-                pageDex = book.pages[i].pdex;
-                console.log("pageDex:", pageDex);
-                return;
-            } else {
-                console.log("dex else");
-                pageDex = 0;
-                console.log("pageDex:", pageDex);
+    var setBookObject = function() {
+        console.log("setBookObject fired using currentbook:", rsjService.user.data.currentbook);
+        for (var i = 0; i < rsjService.user.data.books.length; i++) {
+            if (rsjService.user.data.books[i].linktitle == rsjService.user.data.currentbook) {
+                book = rsjService.user.data.books[i];
+                console.log("setBookObject set this book:", book);
             }
         }
-        if (pageDex == 0) {
+    }
+
+
+    var setPageDex = function() {
+        console.log("setPageDex fired using currentpage", rsjService.user.data.currentpage);
+        var startAtBeginning = true;
+        for (var i = 0; i < book.pages.length; i++) {
+            console.log("page for loop comparing:", book.pages[i].pnumber, rsjService.user.data.currentpage)
+            if (rsjService.user.data.currentpage == "new") {
+                pageDex = 0;
+            }
+            if (book.pages[i].pnumber == rsjService.user.data.currentpage) {
+                pageDex = parseInt(book.pages[i].pdex);
+                console.log("pageDex:", pageDex);
+                startAtBeginning = false;
+                return;
+            }
+        }
+        if (startAtBeginning === true) {
+            pageDex = 0;
             $mdToast.show($mdToast.simple()
-                .textContent("Cool! A new book! Let's start at the beginning")
+                .textContent("Let's start at the beginning")
                 .parent(angular.element(document.getElementsByClassName('newpage')))
             );
         }
@@ -43,9 +68,11 @@ myApp.controller("DynamicReadCtrl", ["$scope", "$sce", "$http", "$location", "$r
 
     var setPageObject = function() {
         for (var i = 0; i < book.pages.length; i++) {
-            if (book.pages[i].pdex == pageDex) {
+            if (parseInt(book.pages[i].pdex) == pageDex) {
                 dread.pageObject = book.pages[i];
                 dread.html = book.pages[i].content[0];
+                rsjService.user.data.currentpage = book.pages[i].pnumber;
+                $route.updateParams({page: book.pages[i].pnumber});
                 console.log("pageObject", dread.pageObject);
                 return
             }
@@ -54,47 +81,53 @@ myApp.controller("DynamicReadCtrl", ["$scope", "$sce", "$http", "$location", "$r
 
     dread.pageForward = function(){
         console.log("pageForward");
+        var theEnd = false;
         for (var i = 0; i < book.pages.length; i++) {
-            if (book.pages[i].pdex == pageDex + 1) {
-                pageDex = book.pages[i].pdex;
+            console.log("pageForward comparing", parseInt(book.pages[i].pdex), pageDex);
+            if (parseInt(book.pages[i].pdex) == pageDex + 1) {
+                pageDex = parseInt(book.pages[i].pdex);
                 dread.pageObject = book.pages[i];
                 dread.html = book.pages[i].content[0];
-                $route.updateParams({page: dread.pageObject.displaypage});
-                rsjService.user.data.currentpage = dread.pageObject.displaypage;
+                $route.updateParams({page: book.pages[i].pnumber});
+                rsjService.user.data.currentpage = book.pages[i].pnumber;
+                //run a function that sets the allprogress tracker
+                return;
             } else {
-                $mdToast.show($mdToast.simple()
-                    .textContent("You're at the end.")
-                    .parent(angular.element(document.getElementsByClassName('newpage')))
-                );
+                theEnd = true;
             }
         }
-    }
-    dread.pageBackward = function(){
-        console.log("pageBackward");
-        for (var i = 0; i < book.pages.length; i++) {
-            if (book.pages[i].pdex == pageDex - 1) {
-                pageDex = book.pages[i].pdex;
-                dread.pageObject = book.pages[i];
-                dread.html = book.pages[i].content[0];
-                $route.updateParams({page: dread.pageObject.displaypage});
-                rsjService.user.data.currentpage = dread.pageObject.displaypage;
-            } else {
-                $mdToast.show($mdToast.simple()
-                    .textContent("You're at the beginning.")
-                    .parent(angular.element(document.getElementsByClassName('newpage')))
-                );
-            }
+        if (theEnd === true) {
+            $mdToast.show($mdToast.simple()
+                .textContent("You're at the end.")
+                .parent(angular.element(document.getElementsByClassName('newpage')))
+            );
         }
     }
 
-    var setup = function() {
-        setBookObject();
-        setPageDex();
-        setPageObject();
+    dread.pageBackward = function(){
+        console.log("pageBackward");
+        var theBeginning = false;
+        for (var i = 0; i < book.pages.length; i++) {
+            if (parseInt(book.pages[i].pdex) == pageDex - 1) {
+                pageDex = parseInt(book.pages[i].pdex);
+                dread.pageObject = book.pages[i];
+                dread.html = book.pages[i].content[0];
+                $route.updateParams({page: book.pages[i].pnumber});
+                rsjService.user.data.currentpage = book.pages[i].pnumber;
+                //run a function that sets the allprogress tracker
+                return;
+            } else {
+                theBeginning = true;
+            }
+        }
+        if (theBeginning === true) {
+            $mdToast.show($mdToast.simple()
+                .textContent("You're at the beginning.")
+                .parent(angular.element(document.getElementsByClassName('newpage')))
+            );
+        }
     }
 
     setup();
-
-
 
 }]);

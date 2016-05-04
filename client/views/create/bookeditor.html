@@ -4,7 +4,8 @@
         <div flex="20">
             <md-list-item class="md-3-line" ng-repeat="book in create.user.data.books">
                 <div class="md-list-item-text" layout="column">
-                    <h3>{{ book.title }}</h3>
+                    <h3>{{ book.displaytitle }}</h3>
+                    <h4>{{ book.linktitle}}</h4>
                     <h4>{{ book.pages.length }}</h4>
                 </div>
             </md-list-item>
@@ -14,8 +15,14 @@
             <form ng-submit="create.submitNewBook(create.newBook)">
                 <div layout="row">
                     <md-input-container class="md-block">
-                        <label>Title</label>
-                        <input ng-model="create.newBook.title">
+                        <label>Display Title</label>
+                        <input ng-model="create.newBook.displaytitle">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Link Title</label>
+                        <input ng-model="create.newBook.linktitle">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="center center">

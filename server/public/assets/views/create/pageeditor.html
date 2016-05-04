@@ -6,7 +6,7 @@
                     <md-input-container class="md-block">
                         <label>Book</label>
                         <md-select ng-model="create.newpage.book" ng-repeat="book in create.user.data.books">
-                            <md-option value="{{book._id}}">{{book.title}}</md-option>
+                            <md-option value="{{book._id}}">{{book.displaytitle}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block">
@@ -22,8 +22,8 @@
                         <input type="number" ng-model="create.newpage.pdex">
                     </md-input-container>
                     <md-input-container class="md-block">
-                        <label>Display Page</label>
-                        <input type="number" ng-model="create.newpage.displaypage">
+                        <label>Displayed Page Number</label>
+                        <input type="number" ng-model="create.newpage.pnumber">
                     </md-input-container>
                 </div>
                 <div layout="row">

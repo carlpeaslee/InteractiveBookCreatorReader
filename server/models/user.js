@@ -19,17 +19,22 @@ var AnswerSchema = new Schema({
 var PageSchema = new Schema({
     book: { type : String , required : true },
     style: { type : String , required : false },
-    pdex: { type : String , required : false },
-    displaypage: { type : String , required : false },
+    pdex: { type : String , required : false, index: {unique: true}},
+    pnumber: { type : String , required : false },
     content: { type : Array , required : false },
     questions: { type : Array , required : false },
     notes: { type : String , required : false }
 })
 
 var BookSchema = new Schema({
-    title: { type : String , required : true },
+    displaytitle: { type : String , required : true, index: {unique: true}},
+    linktitle: { type : String , required : true },
     pages: [PageSchema],
-    userpdex: { type : String, required : true, default: 0}
+})
+
+var AllProgressSchema = new Schema({
+    linktitle: { type : String , required : false },
+    pnumber: { type : String , required : false, default : "new" }
 })
 
 var UserSchema = new Schema({
@@ -49,7 +54,8 @@ var UserSchema = new Schema({
     currentpage: { type : String, required : true, default: 0},
     books: [BookSchema],
     answers: [AnswerSchema],
-    questions: [QuestionSchema]
+    questions: [QuestionSchema],
+    allprogress: [AllProgressSchema]
 });
 
 

@@ -33,20 +33,22 @@
                     <!-- user generated cards -->
                 <div layout="row">
                     <div ng-repeat="book in lib.user.data.books">
-                            <md-card flex="33">
+                        <div flex="33">
+                            <md-card>
                                 <md-card-title>
                                     <md-card-title-text>
-                                        <span class="md-headline">{{book.title}}</span>
-                                        <span class="md-subhead">A user book</span>
+                                        <span class="md-headline">{{book.displaytitle}}</span>
+                                        <span class="md-subhead">{{book.pages.length}} pages</span>
                                     </md-card-title-text>
                                     <md-card-title-media>
                                         <div class="md-media-sm card-media"></div>
                                     </md-card-title-media>
                                 </md-card-title>
                                 <md-card-actions layout="row" layout-align="end center">
-                                    <md-button ng-href="/{{book.title}}/0">Read</md-button>
+                                    <md-button ng-href="/{{book.linktitle}}/liblink">Go read!</md-button>
                                 </md-card-actions>
                             </md-card>
+                        </div>
                     </div>
                 </div>
             </md-content>
